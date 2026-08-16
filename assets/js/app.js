@@ -1,7 +1,7 @@
 import { CONFIG } from './config.js?v=20260816-7';
 import { $, el, mount } from './dom.js?v=20260816-7';
 import { GitHubStore } from './github.js?v=20260816-7';
-import { createCalendarView } from './ui-calendar.js?v=20260816-7';
+import { createCalendarView } from './ui-calendar.js?v=20260816-9';
 import { createSubmitView } from './ui-form.js?v=20260816-8';
 import { formatDateKey, istClock, istDateKey } from './time.js?v=20260816-7';
 

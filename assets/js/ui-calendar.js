@@ -168,7 +168,7 @@ export function createCalendarView({ store }) {
       } else if (accuracy !== null && accuracy !== undefined) {
         cell.dataset.tier = accuracy >= 80 ? 'high' : accuracy >= 60 ? 'mid' : 'low';
       }
-      cell.title = `${doc.totals?.attempted ?? 0} questions · ${accuracy ?? '—'}% · ${studyDuration(doc.studyTime?.totalMinutes)} studied · up at ${formatWakeTime(doc.wakeUpTime)}`;
+      cell.title = `${doc.totals?.attempted ?? 0} self-practice questions · ${accuracy ?? '—'}% self-practice accuracy · ${studyDuration(doc.studyTime?.totalMinutes)} studied · up at ${formatWakeTime(doc.wakeUpTime)}`;
     }
 
     if (loaded.length) {
@@ -182,7 +182,7 @@ export function createCalendarView({ store }) {
       const accuracy = totalQ ? Math.round((totalC / totalQ) * 1000) / 10 : 0;
       const penalty = missedCount > 0 ? ` · ${missedCount} missed` : '';
       statusNode.textContent =
-        `This month — ${loaded.length} logged · ${studyDuration(totalStudyMinutes)} studied · ${totalQ} questions · ${accuracy}% accuracy · avg wake-up ${avgWake}${penalty}`;
+        `This month — ${loaded.length} logged · ${studyDuration(totalStudyMinutes)} studied · ${totalQ} self-practice questions · ${accuracy}% self-practice accuracy · avg wake-up ${avgWake}${penalty}`;
     } else if (notStarted) {
       statusNode.textContent = 'This month has not started yet. Each day unlocks the day after it ends.';
     } else {
