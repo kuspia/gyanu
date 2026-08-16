@@ -1,9 +1,9 @@
-import { CONFIG } from './config.js?v=20260816-3';
-import { el, mount } from './dom.js?v=20260816-3';
-import { entryDetail } from './ui-entry.js?v=20260816-3';
-import { formatDateKey, formatWakeTime, istParts, istTimestamp, minutesFromMidnight, submittableDateKey } from './time.js?v=20260816-3';
-import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-3';
-import { isAlreadySubmittedError } from './github.js?v=20260816-3';
+import { CONFIG } from './config.js?v=20260816-4';
+import { el, mount } from './dom.js?v=20260816-4';
+import { entryDetail } from './ui-entry.js?v=20260816-4';
+import { formatDateKey, formatWakeTime, istParts, istTimestamp, minutesFromMidnight, submittableDateKey } from './time.js?v=20260816-4';
+import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-4';
+import { isAlreadySubmittedError } from './github.js?v=20260816-4';
 
 const COUNT_FIELDS = [
   { key: 'attempted', label: 'Questions done', hint: 'Attempted on your own' },
@@ -643,11 +643,11 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
   function renderNeedsToken() {
     mount(slot, [
       el('div', { class: 'notice notice--warn' }, [
-        el('h3', { text: onRequestToken ? 'Connect GitHub to log progress' : 'This phone is not set up yet' }),
+        el('h3', { text: onRequestToken ? 'Connect GitHub to log progress' : 'Only Gyanu can submit here' }),
         el('p', {
           text: onRequestToken
             ? 'Paste a fine-grained token with Contents: Read and write on this repository.'
-            : 'Progress cannot be submitted from here yet. Go to bhaiya — he will set it up once, and it will never ask again.'
+            : 'If you are Gyanu, ask Manu to set up your phone. Otherwise, jump to View progress.'
         }),
         onRequestToken
           ? el('button', { class: 'btn btn--primary', type: 'button', text: 'Connect token', onclick: () => onRequestToken() })
