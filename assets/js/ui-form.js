@@ -1,9 +1,9 @@
-import { CONFIG } from './config.js?v=20260816-2';
-import { el, mount } from './dom.js?v=20260816-2';
-import { entryDetail } from './ui-entry.js?v=20260816-2';
-import { formatDateKey, formatWakeTime, istParts, istTimestamp, submittableDateKey } from './time.js?v=20260816-2';
-import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-2';
-import { isAlreadySubmittedError } from './github.js?v=20260816-2';
+import { CONFIG } from './config.js?v=20260816-3';
+import { el, mount } from './dom.js?v=20260816-3';
+import { entryDetail } from './ui-entry.js?v=20260816-3';
+import { formatDateKey, formatWakeTime, istParts, istTimestamp, minutesFromMidnight, submittableDateKey } from './time.js?v=20260816-3';
+import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-3';
+import { isAlreadySubmittedError } from './github.js?v=20260816-3';
 
 const COUNT_FIELDS = [
   { key: 'attempted', label: 'Questions done', hint: 'Attempted on your own' },
@@ -20,6 +20,19 @@ function fieldShell(labelText, input, hint) {
     error
   ]);
   return { wrap, error };
+}
+
+const padTime = (value) => String(value).padStart(2, '0');
+function clockFromMinutes(total) {
+  if (total === 1440) return '24:00';
+  return `${padTime(Math.floor(total / 60))}:${padTime(total % 60)}`;
+}
+
+function durationLabel(totalMinutes) {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  if (!hours) return `${minutes} min`;
+  return minutes ? `${hours}h ${minutes}m` : `${hours}h`;
 }
 
 export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFailure, onBrowse }) {
@@ -39,6 +52,50 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
   let formError = null;
   let mockTaken = '';
   let paperAnalysisEnabled = false;
+  let studySlots = [];
+  const selectedStudySlots = new Set();
+  let selfPracticeSection = null;
+  let selfPracticeNote = null;
+
+  function studyTimeValue() {
+    const chosen = studySlots.filter((_, index) => selectedStudySlots.has(index));
+    const segments = [];
+    for (const slot_ of chosen) {
+      const previous = segments.at(-1);
+      if (previous?.endMinutes === slot_.startMinutes) {
+        previous.endMinutes = slot_.endMinutes;
+      } else {
+        segments.push({ startMinutes: slot_.startMinutes, endMinutes: slot_.endMinutes });
+      }
+    }
+    return {
+      totalMinutes: chosen.reduce((sum, slot_) => sum + slot_.endMinutes - slot_.startMinutes, 0),
+      segments
+    };
+  }
+
+  function hasSelfPracticeInput() {
+    return CONFIG.subjects.some(({ key }) =>
+      ['attempted', 'correct', 'wrong', 'topics']
+        .some((field) => String(inputs.get(`${key}.${field}`)?.value ?? '').trim() !== '')
+    );
+  }
+
+  function syncSelfPracticeAvailability() {
+    const locked = studyTimeValue().totalMinutes === 0 && !hasSelfPracticeInput();
+    for (const { key } of CONFIG.subjects) {
+      for (const field of ['attempted', 'correct', 'wrong', 'topics']) {
+        const input = inputs.get(`${key}.${field}`);
+        if (input) input.disabled = locked;
+      }
+    }
+    selfPracticeSection?.classList.toggle('is-locked', locked);
+    if (selfPracticeNote) {
+      selfPracticeNote.textContent = locked
+        ? 'Select at least one study-time block to unlock these optional fields.'
+        : 'Optional — leave a subject blank if you did not practise it.';
+    }
+  }
 
   function readForm() {
     const subjects = {};
@@ -59,6 +116,7 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     return {
       date: targetDate,
       wakeUpTime: inputs.get('wakeUpTime')?.value ?? '',
+      studyTime: studyTimeValue(),
       subjects,
       mockPaper: {
         taken: mockTaken,
@@ -84,7 +142,10 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     for (const [name, node] of errorNodes) {
       if (name.endsWith('.balance')) continue;
       const message = result.errors[name];
-      const show = Boolean(message) && (force || touched.has(name) || startedSubject(name.split('.')[0]));
+      const show = Boolean(message) && (
+        force || touched.has(name) || startedSubject(name.split('.')[0])
+        || (name === 'studyTime' && CONFIG.subjects.some(({ key }) => startedSubject(key)))
+      );
       node.textContent = show ? message : '';
       inputs.get(name)?.classList.toggle('is-invalid', show);
     }
@@ -113,6 +174,7 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     const name = `${subjectKey}.${field.key}`;
     const mark = () => {
       touched.add(name);
+      syncSelfPracticeAvailability();
       paintValidation();
     };
     const keepDigitsOnly = (event) => {
@@ -141,6 +203,7 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     const name = `${subjectKey}.topics`;
     const mark = () => {
       touched.add(name);
+      syncSelfPracticeAvailability();
       paintValidation();
     };
     const area = el('textarea', {
@@ -159,6 +222,74 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     errorNodes.set(name, error);
     wrap.classList.add('field--topics');
     return wrap;
+  }
+
+  function buildStudyTimelineSection(wakeInput) {
+    const timeline = el('div', { class: 'time-cycle' });
+    const total = el('strong', { class: 'study-total', text: '0h studied' });
+    const error = el('p', { class: 'field-error study-time-error', role: 'alert' });
+    errorNodes.set('studyTime', error);
+
+    function renderTotal() {
+      const minutes = studyTimeValue().totalMinutes;
+      total.textContent = `${durationLabel(minutes)} studied`;
+      total.classList.toggle('has-time', minutes > 0);
+    }
+
+    function refresh() {
+      selectedStudySlots.clear();
+      studySlots = [];
+      const wakeMinutes = minutesFromMidnight(wakeInput.value);
+      if (wakeMinutes === null) {
+        mount(timeline, [el('p', { class: 'timeline-empty', text: 'Enter wake-up time to open the study timeline.' })]);
+        renderTotal();
+        syncSelfPracticeAvailability();
+        return;
+      }
+
+      for (let start = wakeMinutes; start < 1440; start += 30) {
+        studySlots.push({ startMinutes: start, endMinutes: Math.min(start + 30, 1440) });
+      }
+
+      mount(timeline, studySlots.map((slot_, index) => el('button', {
+        type: 'button',
+        class: 'time-slot',
+        'aria-pressed': 'false',
+        'aria-label': `${clockFromMinutes(slot_.startMinutes)} to ${clockFromMinutes(slot_.endMinutes)}`,
+        text: `${clockFromMinutes(slot_.startMinutes)}–${clockFromMinutes(slot_.endMinutes)}`,
+        onclick: (event) => {
+          if (selectedStudySlots.has(index)
+              && selectedStudySlots.size === 1 && hasSelfPracticeInput()) {
+            error.textContent = 'Clear every Self-practice field before removing the final study block.';
+            return;
+          }
+          if (selectedStudySlots.has(index)) selectedStudySlots.delete(index);
+          else selectedStudySlots.add(index);
+          const selected = selectedStudySlots.has(index);
+          event.currentTarget.classList.toggle('is-selected', selected);
+          event.currentTarget.setAttribute('aria-pressed', String(selected));
+          touched.add('studyTime');
+          renderTotal();
+          syncSelfPracticeAvailability();
+          paintValidation();
+        }
+      })));
+      renderTotal();
+      syncSelfPracticeAvailability();
+    }
+
+    return {
+      element: el('section', { class: 'form-section form-section--divided study-time-section' }, [
+        el('div', { class: 'section-title-row' }, [
+          el('h3', { class: 'section-title', text: 'Study time' }),
+          total
+        ]),
+        el('p', { class: 'section-note', text: 'Tap every half-hour block when you studied. Green blocks count toward the total.' }),
+        timeline,
+        error
+      ]),
+      refresh
+    };
   }
 
   function buildMockPaperSection() {
@@ -326,15 +457,28 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     errorNodes.clear();
     mockTaken = '';
     paperAnalysisEnabled = false;
+    studySlots = [];
+    selectedStudySlots.clear();
 
-    const mark = () => {
+    let studyTimeline;
+    const markWake = () => {
       touched.add('wakeUpTime');
       paintValidation();
     };
-    const wakeInput = el('input', { type: 'time', class: 'input input--time', oninput: mark, onblur: mark });
+    const wakeInput = el('input', {
+      type: 'time',
+      class: 'input input--time',
+      oninput: () => {
+        touched.add('wakeUpTime');
+        studyTimeline.refresh();
+        paintValidation();
+      },
+      onblur: markWake
+    });
     inputs.set('wakeUpTime', wakeInput);
     const wakeField = fieldShell('Wake-up time', wakeInput, 'When you actually got out of bed.');
     errorNodes.set('wakeUpTime', wakeField.error);
+    studyTimeline = buildStudyTimelineSection(wakeInput);
 
     const subjectCards = CONFIG.subjects.map(({ key, label }) => {
       const balance = el('p', { class: 'balance-error', role: 'alert' });
@@ -346,6 +490,16 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
         buildTopicsInput(key, label)
       ]);
     });
+
+    selfPracticeNote = el('p', {
+      class: 'section-note self-practice-note',
+      text: 'Select at least one study-time block to unlock these optional fields.'
+    });
+    selfPracticeSection = el('section', { class: 'form-section is-locked' }, [
+      el('h3', { class: 'section-title', text: 'Self-practice mode' }),
+      selfPracticeNote,
+      el('div', { class: 'subject-grid' }, subjectCards)
+    ]);
 
     formError = el('p', { class: 'form-error', role: 'alert' });
     submitBtn = el('button', { type: 'submit', class: 'btn btn--primary', disabled: true, text: 'Submit progress' });
@@ -359,11 +513,8 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
       }
     }, [
       el('div', { class: 'wake-row' }, [wakeField.wrap]),
-      el('section', { class: 'form-section' }, [
-        el('h3', { class: 'section-title', text: 'Self-practice mode' }),
-        el('p', { class: 'section-note', text: 'Optional — leave every subject blank if you did not study or attempt questions that day.' }),
-        el('div', { class: 'subject-grid' }, subjectCards)
-      ]),
+      studyTimeline.element,
+      selfPracticeSection,
       buildMockPaperSection(),
       buildPaperAnalysisSection(),
       formError,
@@ -374,6 +525,7 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     ]);
 
     mount(slot, [form]);
+    studyTimeline.refresh();
     paintValidation();
   }
 

@@ -1,5 +1,5 @@
-import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-2';
-import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-2';
+import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-3';
+import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-3';
 
 export const WAKE_TIME_PATTERN = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
@@ -207,6 +207,36 @@ function validatePaperAnalysis(raw) {
   };
 }
 
+function validateStudyTime(raw, wakeUpTime) {
+  const totalMinutes = Number(raw?.totalMinutes ?? 0);
+  const segments = Array.isArray(raw?.segments) ? raw.segments : [];
+  const wakeMinutes = minutesFromMidnight(wakeUpTime);
+  let calculatedTotal = 0;
+  let previousEnd = wakeMinutes;
+
+  if (!Number.isInteger(totalMinutes) || totalMinutes < 0 || totalMinutes > 1440) {
+    return { error: 'Study time is invalid.', value: null };
+  }
+
+  for (const segment of segments) {
+    const start = segment?.startMinutes;
+    const end = segment?.endMinutes;
+    if (!Number.isInteger(start) || !Number.isInteger(end)
+        || wakeMinutes === null || start < wakeMinutes || start < previousEnd
+        || end <= start || end > 1440) {
+      return { error: 'Study timeline contains an invalid time block.', value: null };
+    }
+    calculatedTotal += end - start;
+    previousEnd = end;
+  }
+
+  if (calculatedTotal !== totalMinutes) {
+    return { error: 'Study-time total does not match the selected blocks.', value: null };
+  }
+
+  return { value: { totalMinutes, segments } };
+}
+
 export function validateEntry(input) {
   const errors = {};
   const subjects = {};
@@ -217,6 +247,9 @@ export function validateEntry(input) {
 
   const wake = validateWakeTime(input?.wakeUpTime);
   if (wake.error) errors.wakeUpTime = wake.error;
+
+  const studyTime = validateStudyTime(input?.studyTime, wake.value);
+  if (studyTime.error) errors.studyTime = studyTime.error;
 
   for (const { key, label } of CONFIG.subjects) {
     const result = validateSubject(input?.subjects?.[key], label);
@@ -235,6 +268,15 @@ export function validateEntry(input) {
   const paperAnalysis = validatePaperAnalysis(input?.paperAnalysis);
   Object.assign(errors, paperAnalysis.errors);
 
+  const hasSelfPractice = CONFIG.subjects.some(({ key }) => {
+    const subject = input?.subjects?.[key];
+    return ['attempted', 'correct', 'wrong', 'topics']
+      .some((field) => String(subject?.[field] ?? '').trim() !== '');
+  });
+  if (studyTime.value?.totalMinutes === 0 && hasSelfPractice) {
+    errors.studyTime = 'Study time is 0 hours. Mark study blocks first, or clear every Self-practice field.';
+  }
+
   const valid = Object.keys(errors).length === 0;
   return {
     valid,
@@ -244,6 +286,7 @@ export function validateEntry(input) {
           date: input.date,
           wakeUpTime: wake.value,
           wakeUpMinutes: minutesFromMidnight(wake.value),
+          studyTime: studyTime.value,
           subjects,
           totals: summarise(subjects),
           mockPaper: mockPaper.value,
@@ -259,6 +302,7 @@ export function buildEntryDocument(validated, { submittedAt, source = 'web' }) {
     date: validated.date,
     wakeUpTime: validated.wakeUpTime,
     wakeUpMinutes: validated.wakeUpMinutes,
+    studyTime: validated.studyTime,
     subjects: SUBJECT_KEYS.reduce((acc, key) => {
       const s = validated.subjects[key];
       acc[key] = {
@@ -287,6 +331,15 @@ export function validateStoredDocument(doc, expectedDate) {
   if (!doc || typeof doc !== 'object') return ['File is not a JSON object.'];
   if (doc.date !== expectedDate) problems.push(`"date" is ${JSON.stringify(doc.date)} but the filename says ${expectedDate}.`);
   if (!WAKE_TIME_PATTERN.test(doc.wakeUpTime ?? '')) problems.push('"wakeUpTime" is missing or not HH:MM.');
+
+  if (doc.studyTime !== undefined) {
+    const studyTime = validateStudyTime(doc.studyTime, doc.wakeUpTime);
+    if (studyTime.error) problems.push(`"studyTime" is invalid — ${studyTime.error}`);
+    const hasStudiedSubject = SUBJECT_KEYS.some((key) => doc.subjects?.[key]?.studied !== false);
+    if (studyTime.value?.totalMinutes === 0 && hasStudiedSubject) {
+      problems.push('Self-practice is recorded even though total study time is 0 hours.');
+    }
+  }
 
   for (const key of SUBJECT_KEYS) {
     const s = doc.subjects?.[key];

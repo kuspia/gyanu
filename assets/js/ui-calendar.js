@@ -1,5 +1,5 @@
-import { CONFIG } from './config.js?v=20260816-2';
-import { el, mount } from './dom.js?v=20260816-2';
+import { CONFIG } from './config.js?v=20260816-3';
+import { el, mount } from './dom.js?v=20260816-3';
 import {
   MONTH_NAMES,
   WEEKDAY_SHORT,
@@ -10,9 +10,15 @@ import {
   minutesFromMidnight,
   minutesToClock,
   shiftDateKey
-} from './time.js?v=20260816-2';
+} from './time.js?v=20260816-3';
 
 const CONCURRENCY = 6;
+const studyDuration = (total = 0) => {
+  const hours = Math.floor(total / 60);
+  const minutes = total % 60;
+  if (!hours) return `${minutes}m`;
+  return minutes ? `${hours}h ${minutes}m` : `${hours}h`;
+};
 
 async function mapLimited(items, limit, worker) {
   let cursor = 0;
@@ -162,12 +168,13 @@ export function createCalendarView({ store }) {
       } else if (accuracy !== null && accuracy !== undefined) {
         cell.dataset.tier = accuracy >= 80 ? 'high' : accuracy >= 60 ? 'mid' : 'low';
       }
-      cell.title = `${doc.totals?.attempted ?? 0} questions · ${accuracy ?? '—'}% · up at ${formatWakeTime(doc.wakeUpTime)}`;
+      cell.title = `${doc.totals?.attempted ?? 0} questions · ${accuracy ?? '—'}% · ${studyDuration(doc.studyTime?.totalMinutes)} studied · up at ${formatWakeTime(doc.wakeUpTime)}`;
     }
 
     if (loaded.length) {
       const totalQ = loaded.reduce((sum, d) => sum + (d.totals?.attempted ?? 0), 0);
       const totalC = loaded.reduce((sum, d) => sum + (d.totals?.correct ?? 0), 0);
+      const totalStudyMinutes = loaded.reduce((sum, d) => sum + (d.studyTime?.totalMinutes ?? 0), 0);
       const wakeMinutes = loaded.map((d) => minutesFromMidnight(d.wakeUpTime)).filter((m) => m !== null);
       const avgWake = wakeMinutes.length
         ? minutesToClock(wakeMinutes.reduce((a, b) => a + b, 0) / wakeMinutes.length)
@@ -175,7 +182,7 @@ export function createCalendarView({ store }) {
       const accuracy = totalQ ? Math.round((totalC / totalQ) * 1000) / 10 : 0;
       const penalty = missedCount > 0 ? ` · ${missedCount} missed` : '';
       statusNode.textContent =
-        `This month — ${loaded.length} logged · ${totalQ} questions · ${accuracy}% accuracy · avg wake-up ${avgWake}${penalty}`;
+        `This month — ${loaded.length} logged · ${studyDuration(totalStudyMinutes)} studied · ${totalQ} questions · ${accuracy}% accuracy · avg wake-up ${avgWake}${penalty}`;
     } else if (notStarted) {
       statusNode.textContent = 'This month has not started yet. Each day unlocks the day after it ends.';
     } else {
@@ -217,7 +224,7 @@ export function createCalendarView({ store }) {
 
       nodes.push(el(clickable ? 'a' : 'div', {
         class: `day day--${status}`,
-        href: clickable ? `entry.html?v=20260816-2&date=${encodeURIComponent(dateKey)}` : null,
+        href: clickable ? `entry.html?v=20260816-3&date=${encodeURIComponent(dateKey)}` : null,
         dataset: { date: dateKey },
         'aria-label': label,
         title: status === 'hidden' ? 'Locked until the day is over' : null

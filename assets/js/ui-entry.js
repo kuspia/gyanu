@@ -1,9 +1,19 @@
-import { CONFIG } from './config.js?v=20260816-2';
-import { el } from './dom.js?v=20260816-2';
+import { CONFIG } from './config.js?v=20260816-3';
+import { el } from './dom.js?v=20260816-3';
 
 const DASH = '—';
 
 const pct = (value) => (value === null || value === undefined ? DASH : `${value}%`);
+const padTime = (value) => String(value).padStart(2, '0');
+const clockFromMinutes = (total) => total === 1440
+  ? '24:00'
+  : `${padTime(Math.floor(total / 60))}:${padTime(total % 60)}`;
+const durationLabel = (total = 0) => {
+  const hours = Math.floor(total / 60);
+  const minutes = total % 60;
+  if (!hours) return `${minutes} min`;
+  return minutes ? `${hours}h ${minutes}m` : `${hours}h`;
+};
 
 // Subjects are read defensively: an entry written years ago will not contain a
 // field added later, and must still render rather than show a false zero.
@@ -32,6 +42,23 @@ export function entryDetail(document_) {
   });
 
   const totals = document_?.totals ?? {};
+
+  const studyTime = document_?.studyTime;
+  const studyBlock = studyTime
+    ? el('section', { class: 'study-summary' }, [
+        el('div', {}, [
+          el('span', { class: 'study-summary-label', text: 'Total study time' }),
+          el('strong', { class: 'study-summary-total', text: durationLabel(studyTime.totalMinutes) })
+        ]),
+        Array.isArray(studyTime.segments) && studyTime.segments.length
+          ? el('div', { class: 'study-sessions' }, studyTime.segments.map((segment) =>
+              el('span', {
+                text: `${clockFromMinutes(segment.startMinutes)}–${clockFromMinutes(segment.endMinutes)}`
+              })
+            ))
+          : el('span', { class: 'study-zero', text: 'No study blocks marked' })
+      ])
+    : null;
 
   const table = el('div', { class: 'table-wrap' }, [
     el('table', { class: 'entry-table' }, [
@@ -115,6 +142,7 @@ export function entryDetail(document_) {
     : null;
 
   return el('div', { class: 'entry-detail' }, [
+    studyBlock,
     table,
     topicBlocks.length
       ? el('section', { class: 'topics' }, [
