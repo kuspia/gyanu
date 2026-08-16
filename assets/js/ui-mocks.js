@@ -1,10 +1,25 @@
-import { CONFIG } from './config.js?v=20260816-11';
-import { el, mount } from './dom.js?v=20260816-11';
-import { formatDateKey, latestViewableDateKey } from './time.js?v=20260816-11';
+import { CONFIG } from './config.js?v=20260816-16';
+import { el, mount } from './dom.js?v=20260816-16';
+import { formatDateKey, latestViewableDateKey } from './time.js?v=20260816-16';
 
 const DASH = '—';
 const pct = (value) => value === null || value === undefined ? DASH : `${value}%`;
 const CONCURRENCY = 6;
+
+function paperTotals(analysis) {
+  if (analysis?.totals) return analysis.totals;
+  const totals = CONFIG.subjects.reduce((sum, { key }) => {
+    const subject = analysis?.subjects?.[key];
+    sum.attempted += subject?.attempted ?? 0;
+    sum.correct += subject?.correct ?? 0;
+    sum.wrong += subject?.wrong ?? 0;
+    return sum;
+  }, { attempted: 0, correct: 0, wrong: 0 });
+  totals.accuracy = totals.attempted
+    ? Math.round((totals.correct / totals.attempted) * 1000) / 10
+    : null;
+  return totals;
+}
 
 async function mapLimited(items, limit, worker) {
   let cursor = 0;
@@ -20,6 +35,7 @@ async function mapLimited(items, limit, worker) {
 
 function resultCard(document_) {
   const analysis = document_.paperAnalysis;
+  const totals = paperTotals(analysis);
   return el('article', { class: 'mock-result-card' }, [
     el('div', { class: 'detail-head mock-result-head' }, [
       el('div', {}, [
@@ -48,7 +64,14 @@ function resultCard(document_) {
             el('td', { class: 'is-wrong', text: String(subject.wrong ?? 0) }),
             el('td', { text: pct(subject.accuracy) })
           ]);
-        }))
+        })),
+        el('tfoot', {}, [el('tr', {}, [
+          el('th', { scope: 'row', text: 'Overall' }),
+          el('td', { text: String(totals.attempted) }),
+          el('td', { class: 'is-correct', text: String(totals.correct) }),
+          el('td', { class: 'is-wrong', text: String(totals.wrong) }),
+          el('td', { text: pct(totals.accuracy) })
+        ])])
       ])
     ]),
     analysis.reflection

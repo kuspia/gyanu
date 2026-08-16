@@ -1,9 +1,9 @@
-import { CONFIG } from './config.js?v=20260816-11';
-import { el, mount } from './dom.js?v=20260816-11';
-import { entryDetail } from './ui-entry.js?v=20260816-14';
-import { formatDateKey, formatWakeTime, istParts, istTimestamp, minutesFromMidnight, submittableDateKey } from './time.js?v=20260816-11';
-import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-15';
-import { isAlreadySubmittedError } from './github.js?v=20260816-11';
+import { CONFIG } from './config.js?v=20260816-16';
+import { el, mount } from './dom.js?v=20260816-16';
+import { entryDetail } from './ui-entry.js?v=20260816-16';
+import { formatDateKey, formatWakeTime, istParts, istTimestamp, minutesFromMidnight, submittableDateKey } from './time.js?v=20260816-16';
+import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-16';
+import { isAlreadySubmittedError } from './github.js?v=20260816-16';
 
 const COUNT_FIELDS = [
   { key: 'attempted', label: 'Questions done', hint: 'Attempted on your own' },
@@ -348,6 +348,7 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
 
   function buildPaperAnalysisSection() {
     const analysisSlot = el('div');
+    let updateAnalysisSummary = () => {};
 
     function clearAnalysisFields() {
       for (const name of [...inputs.keys()]) {
@@ -362,6 +363,7 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
       const name = `paperAnalysis.${subjectKey}.${field.key}`;
       const mark = () => {
         touched.add(name);
+        updateAnalysisSummary();
         paintValidation();
       };
       const input = el('input', {
@@ -391,11 +393,14 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
         return;
       }
 
-      const cards = CONFIG.subjects.map(({ key, label }) => {
+      const cards = CONFIG.subjects.map(({ key, label, mockQuestionLimit }) => {
         const balance = el('p', { class: 'balance-error', role: 'alert' });
         errorNodes.set(`paperAnalysis.${key}.balance`, balance);
         return el('article', { class: `subject-card subject-card--${key}` }, [
-          el('h4', { class: 'subject-title' }, [el('span', { class: 'subject-dot' }), label]),
+          el('div', { class: 'paper-subject-head' }, [
+            el('h4', { class: 'subject-title' }, [el('span', { class: 'subject-dot' }), label]),
+            el('span', { class: 'paper-question-limit', text: `Max ${mockQuestionLimit}` })
+          ]),
           el('div', { class: 'count-grid' }, COUNT_FIELDS.map((field) =>
             buildAnalysisCountInput(key, label, field)
           )),
@@ -408,11 +413,13 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
         type: 'text',
         inputMode: 'numeric',
         autocomplete: 'off',
-        maxLength: 3,
+        maxLength: 4,
         placeholder: '0',
         class: 'input input--score',
         oninput: (event) => {
-          event.currentTarget.value = event.currentTarget.value.replace(/\D/g, '');
+          const negative = event.currentTarget.value.trim().startsWith('-');
+          const digits = event.currentTarget.value.replace(/\D/g, '').slice(0, 3);
+          event.currentTarget.value = `${negative ? '-' : ''}${digits}`;
           touched.add(scoreName);
           paintValidation();
         },
@@ -422,8 +429,33 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
         }
       });
       inputs.set(scoreName, scoreInput);
-      const scoreField = fieldShell('Total marks out of 720', scoreInput, null);
+      const scoreField = fieldShell(
+        'Total marks (-180 to 720)',
+        scoreInput,
+        'Must exactly match the answer data: +4 for every right answer and −1 for every wrong answer.'
+      );
       errorNodes.set(scoreName, scoreField.error);
+
+      const totalAttempted = el('strong', { text: '0' });
+      const totalCorrect = el('strong', { text: '0' });
+      const totalWrong = el('strong', { text: '0' });
+      const totalAccuracy = el('strong', { text: '—' });
+      const expectedMarks = el('strong', { class: 'paper-expected-score', text: '0 marks' });
+      updateAnalysisSummary = () => {
+        const totals = CONFIG.subjects.reduce((sum, { key }) => {
+          sum.attempted += Number(inputs.get(`paperAnalysis.${key}.attempted`)?.value) || 0;
+          sum.correct += Number(inputs.get(`paperAnalysis.${key}.correct`)?.value) || 0;
+          sum.wrong += Number(inputs.get(`paperAnalysis.${key}.wrong`)?.value) || 0;
+          return sum;
+        }, { attempted: 0, correct: 0, wrong: 0 });
+        totalAttempted.textContent = String(totals.attempted);
+        totalCorrect.textContent = String(totals.correct);
+        totalWrong.textContent = String(totals.wrong);
+        totalAccuracy.textContent = totals.attempted
+          ? `${Math.round((totals.correct / totals.attempted) * 1000) / 10}%`
+          : '—';
+        expectedMarks.textContent = `${totals.correct * 4 - totals.wrong} expected marks`;
+      };
 
       const reflectionName = 'paperAnalysis.reflection';
       const reflectionCount = el('span', {
@@ -461,9 +493,17 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
       mount(analysisSlot, [
         el('p', { class: 'section-note', text: 'Fill all three subjects. Right + Wrong must equal Questions done.' }),
         el('div', { class: 'subject-grid' }, cards),
+        el('div', { class: 'paper-totals' }, [
+          el('span', {}, [el('small', { text: 'Attempted' }), totalAttempted]),
+          el('span', {}, [el('small', { text: 'Right' }), totalCorrect]),
+          el('span', {}, [el('small', { text: 'Wrong' }), totalWrong]),
+          el('span', {}, [el('small', { text: 'Accuracy' }), totalAccuracy]),
+          el('span', { class: 'paper-totals-score' }, [el('small', { text: '+4 / −1 calculation' }), expectedMarks])
+        ]),
         el('div', { class: 'score-row' }, [scoreField.wrap]),
         el('div', { class: 'analysis-reflection' }, [reflectionField.wrap, reflectionCount])
       ]);
+      updateAnalysisSummary();
     }
 
     const toggle = el('input', {

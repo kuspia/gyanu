@@ -1,5 +1,5 @@
-import { CONFIG } from './config.js?v=20260816-11';
-import { el } from './dom.js?v=20260816-11';
+import { CONFIG } from './config.js?v=20260816-16';
+import { el } from './dom.js?v=20260816-16';
 
 const DASH = '—';
 
@@ -14,6 +14,21 @@ const durationLabel = (total = 0) => {
   if (!hours) return `${minutes} min`;
   return minutes ? `${hours}h ${minutes}m` : `${hours}h`;
 };
+
+function paperTotals(analysis) {
+  if (analysis?.totals) return analysis.totals;
+  const totals = CONFIG.subjects.reduce((sum, { key }) => {
+    const subject = analysis?.subjects?.[key];
+    sum.attempted += subject?.attempted ?? 0;
+    sum.correct += subject?.correct ?? 0;
+    sum.wrong += subject?.wrong ?? 0;
+    return sum;
+  }, { attempted: 0, correct: 0, wrong: 0 });
+  totals.accuracy = totals.attempted
+    ? Math.round((totals.correct / totals.attempted) * 1000) / 10
+    : null;
+  return totals;
+}
 
 // Subjects are read defensively: an entry written years ago will not contain a
 // field added later, and must still render rather than show a false zero.
@@ -115,6 +130,7 @@ export function entryDetail(document_) {
     : null;
 
   const analysis = document_?.paperAnalysis;
+  const analysisTotals = paperTotals(analysis);
   const analysisBlock = analysis
     ? el('section', { class: 'entry-extra' }, [
         el('div', { class: 'detail-head' }, [
@@ -139,7 +155,14 @@ export function entryDetail(document_) {
                 el('td', { class: 'is-wrong', text: String(subject.wrong ?? 0) }),
                 el('td', { text: pct(subject.accuracy) })
               ]);
-            }))
+            })),
+            el('tfoot', {}, [el('tr', {}, [
+              el('th', { scope: 'row', text: 'Overall' }),
+              el('td', { text: String(analysisTotals.attempted) }),
+              el('td', { class: 'is-correct', text: String(analysisTotals.correct) }),
+              el('td', { class: 'is-wrong', text: String(analysisTotals.wrong) }),
+              el('td', { text: pct(analysisTotals.accuracy) })
+            ])])
           ])
         ]),
         analysis.reflection

@@ -5,10 +5,11 @@ export const CONFIG = {
   dataDir: 'data/entries',
   schemaVersion: 1,
   subjects: [
-    { key: 'physics', label: 'Physics', accent: 'var(--physics)' },
-    { key: 'chemistry', label: 'Chemistry', accent: 'var(--chemistry)' },
-    { key: 'biology', label: 'Biology', accent: 'var(--biology)' }
+    { key: 'physics', label: 'Physics', accent: 'var(--physics)', mockQuestionLimit: 45 },
+    { key: 'chemistry', label: 'Chemistry', accent: 'var(--chemistry)', mockQuestionLimit: 45 },
+    { key: 'biology', label: 'Biology', accent: 'var(--biology)', mockQuestionLimit: 90 }
   ],
+  mockScoring: { correct: 4, wrong: -1, maxScore: 720, minScore: -180 },
   maxQuestionsPerSubject: 300,
   // How far the calendar can be browsed. Individual days stay locked by the
   // IST clock regardless — this only widens the month navigation, so future

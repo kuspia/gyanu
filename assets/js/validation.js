@@ -1,5 +1,5 @@
-import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-11';
-import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-11';
+import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-16';
+import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-16';
 
 export const WAKE_TIME_PATTERN = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
@@ -11,7 +11,8 @@ const MOCK_EXPERIENCE_MAX = 800;
 const REMARKS_MAX = 2000;
 const PAPER_REFLECTION_MIN = 100;
 const PAPER_REFLECTION_MAX = 2000;
-const MAX_NEET_SCORE = 720;
+const MAX_NEET_SCORE = CONFIG.mockScoring.maxScore;
+const MIN_NEET_SCORE = CONFIG.mockScoring.minScore;
 
 function countField(raw, label) {
   if (raw === null || raw === undefined || String(raw).trim() === '') {
@@ -179,7 +180,7 @@ function validatePaperAnalysis(raw) {
 
   const errors = {};
   const subjects = {};
-  for (const { key, label } of CONFIG.subjects) {
+  for (const { key, label, mockQuestionLimit } of CONFIG.subjects) {
     const source = raw.subjects?.[key];
     const attempted = countField(source?.attempted, `${label} attempted`);
     const correct = countField(source?.correct, `${label} right`);
@@ -188,6 +189,18 @@ function validatePaperAnalysis(raw) {
     if (attempted.error) errors[`paperAnalysis.${key}.attempted`] = attempted.error;
     if (correct.error) errors[`paperAnalysis.${key}.correct`] = correct.error;
     if (wrong.error) errors[`paperAnalysis.${key}.wrong`] = wrong.error;
+    if (!attempted.error && attempted.value > mockQuestionLimit) {
+      errors[`paperAnalysis.${key}.attempted`] =
+        `${label} has at most ${mockQuestionLimit} questions in a NEET mock.`;
+    }
+    if (!correct.error && correct.value > mockQuestionLimit) {
+      errors[`paperAnalysis.${key}.correct`] =
+        `${label} correct answers cannot exceed ${mockQuestionLimit}.`;
+    }
+    if (!wrong.error && wrong.value > mockQuestionLimit) {
+      errors[`paperAnalysis.${key}.wrong`] =
+        `${label} wrong answers cannot exceed ${mockQuestionLimit}.`;
+    }
     if (!attempted.error && !correct.error && !wrong.error
         && correct.value + wrong.value !== attempted.value) {
       errors[`paperAnalysis.${key}.balance`] =
@@ -205,11 +218,19 @@ function validatePaperAnalysis(raw) {
     }
   }
 
+  const totals = summarise(subjects);
+  const calculatedScore = totals.correct * CONFIG.mockScoring.correct
+    + totals.wrong * CONFIG.mockScoring.wrong;
+
   const scoreText = String(raw.score ?? '').trim();
-  if (!/^\d+$/.test(scoreText)) {
-    errors['paperAnalysis.score'] = 'Total marks are required and must contain digits only.';
-  } else if (Number(scoreText) > MAX_NEET_SCORE) {
-    errors['paperAnalysis.score'] = `Total marks cannot be more than ${MAX_NEET_SCORE}.`;
+  if (!/^-?\d+$/.test(scoreText)) {
+    errors['paperAnalysis.score'] = 'Total marks are required and must be a whole number.';
+  } else if (Number(scoreText) < MIN_NEET_SCORE || Number(scoreText) > MAX_NEET_SCORE) {
+    errors['paperAnalysis.score'] = `Total marks must be between ${MIN_NEET_SCORE} and ${MAX_NEET_SCORE}.`;
+  } else if (Object.keys(errors).length === 0 && Object.keys(subjects).length === SUBJECT_KEYS.length
+      && Number(scoreText) !== calculatedScore) {
+    errors['paperAnalysis.score'] =
+      `Marks do not match the answers: ${totals.correct} right × 4 − ${totals.wrong} wrong = ${calculatedScore}.`;
   }
 
   const reflection = String(raw.reflection ?? '');
@@ -225,7 +246,7 @@ function validatePaperAnalysis(raw) {
   return {
     errors,
     value: Object.keys(errors).length === 0
-      ? { subjects, score: Number(scoreText), maxScore: MAX_NEET_SCORE, reflection }
+      ? { subjects, totals, score: Number(scoreText), maxScore: MAX_NEET_SCORE, reflection }
       : null
   };
 }
@@ -414,7 +435,7 @@ export function validateStoredDocument(doc, expectedDate) {
   }
 
   if (doc.paperAnalysis !== undefined && doc.paperAnalysis !== null) {
-    for (const key of SUBJECT_KEYS) {
+    for (const { key, mockQuestionLimit } of CONFIG.subjects) {
       const s = doc.paperAnalysis.subjects?.[key];
       if (!s) {
         problems.push(`Paper analysis is missing subject "${key}".`);
@@ -422,15 +443,27 @@ export function validateStoredDocument(doc, expectedDate) {
       }
       if (!Number.isInteger(s.attempted) || !Number.isInteger(s.correct) || !Number.isInteger(s.wrong)
           || s.attempted < 0 || s.correct < 0 || s.wrong < 0
-          || s.attempted > MAX || s.correct > MAX || s.wrong > MAX) {
+          || s.attempted > mockQuestionLimit
+          || s.correct > mockQuestionLimit || s.wrong > mockQuestionLimit) {
         problems.push(`Paper analysis has invalid counts for "${key}".`);
       } else if (s.correct + s.wrong !== s.attempted) {
         problems.push(`Paper analysis "${key}" does not balance.`);
       }
     }
+    const totals = summarise(doc.paperAnalysis.subjects);
+    const expectedScore = totals.correct * CONFIG.mockScoring.correct
+      + totals.wrong * CONFIG.mockScoring.wrong;
     if (!Number.isInteger(doc.paperAnalysis.score)
-        || doc.paperAnalysis.score < 0 || doc.paperAnalysis.score > MAX_NEET_SCORE) {
-      problems.push(`Paper analysis score must be between 0 and ${MAX_NEET_SCORE}.`);
+        || doc.paperAnalysis.score < MIN_NEET_SCORE || doc.paperAnalysis.score > MAX_NEET_SCORE) {
+      problems.push(`Paper analysis score must be between ${MIN_NEET_SCORE} and ${MAX_NEET_SCORE}.`);
+    } else if (doc.paperAnalysis.score !== expectedScore) {
+      problems.push(`Paper analysis score is ${doc.paperAnalysis.score}, but answer counts produce ${expectedScore}.`);
+    }
+    const savedTotals = doc.paperAnalysis.totals;
+    if (!savedTotals || savedTotals.attempted !== totals.attempted
+        || savedTotals.correct !== totals.correct || savedTotals.wrong !== totals.wrong
+        || savedTotals.accuracy !== totals.accuracy) {
+      problems.push('Paper analysis overall totals do not match its subject counts.');
     }
     const reflection = doc.paperAnalysis.reflection;
     if (typeof reflection !== 'string' || reflection.trim().length < PAPER_REFLECTION_MIN) {
