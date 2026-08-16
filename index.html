@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.github.com; img-src 'self' data:; font-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
+<meta name="color-scheme" content="dark light">
+<meta name="robots" content="noindex">
+<title>Gyanu · NEET Progress</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>">
+</head>
+<body>
+<a class="skip-link" href="#views">Skip to content</a>
+
+<header class="site-head">
+  <div class="site-head-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">◆</span>
+      <div>
+        <h1 class="brand-title">Gyanu · NEET Progress</h1>
+      </div>
+    </div>
+    <div class="head-meta">
+      <span class="clock" title="Indian Standard Time"><span class="clock-date" id="ist-date"></span><span class="clock-time" id="ist-clock"></span></span>
+      <img class="avatar" id="avatar" src="assets/img/gyanu.jpg" alt="Gyanu" width="74" height="74" decoding="async">
+    </div>
+  </div>
+</header>
+
+<div id="banner" class="banner-slot"></div>
+
+<nav class="tabs" id="tabs" role="tablist" aria-label="Sections"></nav>
+
+<main id="views" class="views"></main>
+
+<dialog id="token-dialog" class="dialog">
+  <form id="token-form" method="dialog" class="dialog-form">
+    <h2 class="dialog-title">Connect GitHub</h2>
+    <p class="dialog-copy">
+      Paste a <strong>fine-grained personal access token</strong> with
+      <strong>Contents: Read and write</strong> on this repository only.
+      It is stored in this browser and never committed.
+    </p>
+    <label class="field">
+      <span class="field-label">Token</span>
+      <input id="token-input" class="input" type="password" autocomplete="off" spellcheck="false"
+             placeholder="github_pat_…" aria-describedby="token-error">
+      <p id="token-error" class="field-error" role="alert"></p>
+    </label>
+    <div class="dialog-actions">
+      <button id="token-cancel" class="btn btn--ghost" type="button">Cancel</button>
+      <button id="token-save" class="btn btn--primary" type="submit">Save token</button>
+    </div>
+  </form>
+</dialog>
+
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
