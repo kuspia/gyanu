@@ -5,7 +5,7 @@ export const WAKE_TIME_PATTERN = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
 const MAX = CONFIG.maxQuestionsPerSubject;
 const TOPICS_MIN = 2;
-const TOPICS_MAX = 600;
+const TOPICS_MAX = 12000;
 const MOCK_EXPERIENCE_MIN = 10;
 const MOCK_EXPERIENCE_MAX = 800;
 const REMARKS_MAX = 2000;
@@ -44,9 +44,10 @@ export function splitTopics(text) {
 }
 
 export function validateTopics(raw, label) {
-  const text = String(raw ?? '').trim();
-  if (!text) return { error: `${label}: write what you studied. "Revision" or "nothing" is fine.` };
-  if (text.length < TOPICS_MIN) return { error: `${label}: too short to mean anything.` };
+  const text = String(raw ?? '');
+  const meaningfulText = text.trim();
+  if (!meaningfulText) return { error: `${label}: write what you studied. "Revision" or "nothing" is fine.` };
+  if (meaningfulText.length < TOPICS_MIN) return { error: `${label}: too short to mean anything.` };
   if (text.length > TOPICS_MAX) return { error: `${label}: keep it under ${TOPICS_MAX} characters.` };
   return { value: text };
 }
@@ -54,12 +55,12 @@ export function validateTopics(raw, label) {
 export function validateSubject(raw, label) {
   const errors = {};
   const rawCounts = ['attempted', 'correct', 'wrong'].map((f) => String(raw?.[f] ?? '').trim());
-  const rawTopics = String(raw?.topics ?? '').trim();
+  const rawTopics = String(raw?.topics ?? '');
   const countsBlank = rawCounts.every((v) => v === '');
 
   // A subject left completely blank means he did not touch it that day. That is
   // a real answer, so it is recorded rather than forced into fake zeroes.
-  if (countsBlank && !rawTopics) {
+  if (countsBlank && !rawTopics.trim()) {
     return {
       valid: true,
       errors: {},
@@ -395,6 +396,8 @@ export function validateStoredDocument(doc, expectedDate) {
     if (s.studied !== false && s.topics !== undefined && s.topics !== null
         && String(s.topics).trim().length < TOPICS_MIN) {
       problems.push(`"${key}" has an empty topics field.`);
+    } else if (String(s.topics ?? '').length > TOPICS_MAX) {
+      problems.push(`"${key}" topics exceed ${TOPICS_MAX} characters.`);
     }
     if (s.studied === false && s.attempted !== 0) {
       problems.push(`"${key}" is marked not studied but records ${s.attempted} questions.`);

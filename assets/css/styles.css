@@ -205,7 +205,8 @@ a { color: var(--accent); }
 .input.is-invalid { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 8%, var(--bg-sunken)); }
 .input--count { font-family: var(--mono); text-align: center; padding-inline: 4px; }
 .input--time { font-family: var(--mono); max-width: 190px; }
-.input--topics { resize: vertical; min-height: 62px; line-height: 1.45; }
+.input--topics { resize: vertical; min-height: 220px; line-height: 1.5; }
+.topic-character-count { margin-top: 5px; color: var(--text-faint); font: 11px var(--mono); }
 
 .field--topics { margin-top: 12px; }
 

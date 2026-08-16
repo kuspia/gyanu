@@ -2,7 +2,7 @@ import { CONFIG } from './config.js?v=20260816-11';
 import { el, mount } from './dom.js?v=20260816-11';
 import { entryDetail } from './ui-entry.js?v=20260816-14';
 import { formatDateKey, formatWakeTime, istParts, istTimestamp, minutesFromMidnight, submittableDateKey } from './time.js?v=20260816-11';
-import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-14';
+import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-15';
 import { isAlreadySubmittedError } from './github.js?v=20260816-11';
 
 const COUNT_FIELDS = [
@@ -183,6 +183,7 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
 
   function buildTopicsInput(subjectKey, label) {
     const name = `${subjectKey}.topics`;
+    const counter = el('span', { class: 'topic-character-count', text: '0 / 12,000 characters' });
     const mark = () => {
       touched.add(name);
       syncSelfPracticeAvailability();
@@ -190,19 +191,23 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     };
     const area = el('textarea', {
       class: 'input input--topics',
-      rows: 2,
-      maxLength: 600,
+      rows: 10,
+      maxLength: 12000,
       spellcheck: true,
       autocapitalize: 'sentences',
       placeholder: 'What you studied, challenges you faced, and where you need help…',
       'aria-label': `Topics studied, challenges faced, and help needed in ${label}`,
-      oninput: mark,
+      oninput: (event) => {
+        counter.textContent = `${event.currentTarget.value.length.toLocaleString()} / 12,000 characters`;
+        mark();
+      },
       onblur: mark
     });
     inputs.set(name, area);
     const { wrap, error } = fieldShell('Topics studied, challenges faced, and help needed (if any)', area, 'Write naturally — your text and line breaks will be shown exactly as entered.');
     errorNodes.set(name, error);
     wrap.classList.add('field--topics');
+    wrap.insertBefore(counter, error);
     return wrap;
   }
 
