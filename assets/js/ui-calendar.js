@@ -168,7 +168,7 @@ export function createCalendarView({ store }) {
       } else if (accuracy !== null && accuracy !== undefined) {
         cell.dataset.tier = accuracy >= 80 ? 'high' : accuracy >= 60 ? 'mid' : 'low';
       }
-      cell.title = `${doc.totals?.attempted ?? 0} self-practice questions · ${accuracy ?? '—'}% self-practice accuracy · ${studyDuration(doc.studyTime?.totalMinutes)} productive study · up at ${formatWakeTime(doc.wakeUpTime)}`;
+      cell.title = `${doc.totals?.attempted ?? 0} self-practice questions · ${accuracy ?? '—'}% self-practice accuracy · ${studyDuration(doc.studyTime?.totalMinutes)} productive study · woke up at ${formatWakeTime(doc.wakeUpTime)}`;
     }
 
     if (loaded.length) {
