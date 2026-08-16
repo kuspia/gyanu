@@ -118,7 +118,7 @@ export function entryDetail(document_) {
   const analysisBlock = analysis
     ? el('section', { class: 'entry-extra' }, [
         el('div', { class: 'detail-head' }, [
-          el('h4', { class: 'topics-title', text: 'Last paper analysis' }),
+          el('h4', { class: 'topics-title', text: 'Paper analysis' }),
           el('span', { class: 'chip', text: `${analysis.score ?? '—'} / ${analysis.maxScore ?? 720}` })
         ]),
         el('div', { class: 'table-wrap' }, [

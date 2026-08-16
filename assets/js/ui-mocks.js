@@ -23,7 +23,7 @@ function resultCard(document_) {
   return el('article', { class: 'mock-result-card' }, [
     el('div', { class: 'detail-head mock-result-head' }, [
       el('div', {}, [
-        el('p', { class: 'eyebrow', text: 'Last paper analysis' }),
+        el('p', { class: 'eyebrow', text: 'Mock paper result' }),
         el('h3', { class: 'mock-result-date', text: formatDateKey(document_.date) })
       ]),
       el('span', { class: 'chip mock-result-score', text: `${analysis.score ?? DASH} / ${analysis.maxScore ?? 720}` })
@@ -107,7 +107,7 @@ export function createMockResultsView({ store }) {
       ? [el('div', { class: 'mock-results-list' }, results.map(resultCard))]
       : [el('div', { class: 'notice' }, [
           el('h3', { text: 'No mock results yet' }),
-          el('p', { text: 'When Last paper analysis is included in a daily submission, its full result will be kept here.' })
+          el('p', { text: 'When a paper analysis is included in a daily submission, its full result will be kept here.' })
         ])]);
   }
 

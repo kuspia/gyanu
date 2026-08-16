@@ -1,6 +1,6 @@
 import { CONFIG } from './config.js?v=20260816-11';
 import { el, mount } from './dom.js?v=20260816-11';
-import { entryDetail } from './ui-entry.js?v=20260816-11';
+import { entryDetail } from './ui-entry.js?v=20260816-12';
 import { formatDateKey, formatWakeTime, istParts, istTimestamp, minutesFromMidnight, submittableDateKey } from './time.js?v=20260816-11';
 import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-11';
 import { isAlreadySubmittedError } from './github.js?v=20260816-11';
@@ -436,8 +436,8 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     });
 
     return el('section', { class: 'form-section form-section--divided' }, [
-      el('h3', { class: 'section-title', text: 'Last paper analysis' }),
-      el('p', { class: 'section-note', text: 'This can be added whenever you analyse your most recent paper, even days later.' }),
+      el('h3', { class: 'section-title', text: 'Paper analysis' }),
+      el('p', { class: 'section-note', text: 'Add this whenever you analyse a paper. Every submitted result is kept separately in View mock results.' }),
       el('label', { class: 'analysis-toggle' }, [toggle, el('span', { text: 'Add paper analysis' })]),
       analysisSlot
     ]);
