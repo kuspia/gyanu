@@ -1,5 +1,5 @@
-import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-5';
-import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-5';
+import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-6';
+import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-6';
 
 export const WAKE_TIME_PATTERN = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
@@ -210,13 +210,32 @@ function validatePaperAnalysis(raw) {
 function validateStudyTime(raw, wakeUpTime) {
   const totalMinutes = Number(raw?.totalMinutes ?? 0);
   const wakeMinutes = minutesFromMidnight(wakeUpTime);
-  const availableMinutes = wakeMinutes === null ? null : 1440 - wakeMinutes;
+  const sessions = Array.isArray(raw?.sessions)
+    ? raw.sessions
+    : (Number.isInteger(raw?.fromMinutes) && Number.isInteger(raw?.toMinutes)
+        && raw.toMinutes > raw.fromMinutes
+      ? [{ fromMinutes: raw.fromMinutes, toMinutes: raw.toMinutes }]
+      : []);
 
-  if (!Number.isInteger(totalMinutes) || totalMinutes < 0
-      || (availableMinutes !== null && totalMinutes > availableMinutes)) {
+  if (!Number.isInteger(totalMinutes) || totalMinutes < 0 || wakeMinutes === null) {
     return { error: 'Study time is invalid.', value: null };
   }
-  return { value: { totalMinutes } };
+
+  let calculatedTotal = 0;
+  let previousEnd = wakeMinutes;
+  for (const session of sessions) {
+    if (!Number.isInteger(session?.fromMinutes) || !Number.isInteger(session?.toMinutes)
+        || session.fromMinutes < wakeMinutes || session.fromMinutes < previousEnd
+        || session.toMinutes <= session.fromMinutes || session.toMinutes > 1440) {
+      return { error: 'Study periods are invalid or overlap.', value: null };
+    }
+    calculatedTotal += session.toMinutes - session.fromMinutes;
+    previousEnd = session.toMinutes;
+  }
+  if (calculatedTotal !== totalMinutes) {
+    return { error: 'Study-time total does not match the saved periods.', value: null };
+  }
+  return { value: { totalMinutes, sessions } };
 }
 
 export function validateEntry(input) {
@@ -256,7 +275,7 @@ export function validateEntry(input) {
       .some((field) => String(subject?.[field] ?? '').trim() !== '');
   });
   if (studyTime.value?.totalMinutes === 0 && hasSelfPractice) {
-    errors.studyTime = 'Study time is 0 hours. Mark study blocks first, or clear every Self-practice field.';
+    errors.studyTime = 'Study time is 0 hours. Add a study period first, or clear every Self-practice field.';
   }
 
   const valid = Object.keys(errors).length === 0;

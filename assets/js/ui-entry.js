@@ -1,5 +1,5 @@
-import { CONFIG } from './config.js?v=20260816-5';
-import { el } from './dom.js?v=20260816-5';
+import { CONFIG } from './config.js?v=20260816-6';
+import { el } from './dom.js?v=20260816-6';
 
 const DASH = '—';
 
@@ -44,18 +44,28 @@ export function entryDetail(document_) {
   const totals = document_?.totals ?? {};
 
   const studyTime = document_?.studyTime;
+  const savedSessions = Array.isArray(studyTime?.sessions)
+    ? studyTime.sessions
+    : (Number.isInteger(studyTime?.fromMinutes) && Number.isInteger(studyTime?.toMinutes)
+        ? [{ fromMinutes: studyTime.fromMinutes, toMinutes: studyTime.toMinutes }]
+        : (studyTime?.totalMinutes > 0 && Number.isInteger(document_?.wakeUpMinutes)
+            ? [{
+                fromMinutes: document_.wakeUpMinutes,
+                toMinutes: document_.wakeUpMinutes + studyTime.totalMinutes
+              }]
+            : []));
   const studyBlock = studyTime
     ? el('section', { class: 'study-summary' }, [
         el('div', {}, [
           el('span', { class: 'study-summary-label', text: 'Total study time' }),
           el('strong', { class: 'study-summary-total', text: durationLabel(studyTime.totalMinutes) })
         ]),
-        el('span', {
-          class: 'study-zero',
-          text: studyTime.totalMinutes > 0
-            ? `${clockFromMinutes(document_.wakeUpMinutes)}–${clockFromMinutes(document_.wakeUpMinutes + studyTime.totalMinutes)}`
-            : '0 hours recorded'
-        })
+        savedSessions.length
+          ? el('div', { class: 'study-sessions' }, savedSessions.map((session, index) =>
+              el('span', {
+                text: `Period ${index + 1} · ${clockFromMinutes(session.fromMinutes)}–${clockFromMinutes(session.toMinutes)} · ${durationLabel(session.toMinutes - session.fromMinutes)}`
+              })))
+          : el('span', { class: 'study-zero', text: '0 hours recorded' })
       ])
     : null;
 

@@ -234,26 +234,44 @@ a { color: var(--accent); }
   display: block; min-height: 24px; margin-bottom: 5px;
   color: var(--text); text-align: center; font: 650 13px var(--mono);
 }
-.study-slider {
-  --study-progress: 0%;
-  appearance: none; width: 100%; height: 8px; margin: 10px 0;
-  border-radius: 999px; outline: none; cursor: pointer;
-  background: linear-gradient(to right,
-    var(--good) 0%, var(--good) var(--study-progress),
-    var(--border-strong) var(--study-progress), var(--border-strong) 100%);
+.study-range-control { position: relative; height: 48px; margin: 2px 0; }
+.study-range-track {
+  position: absolute; z-index: 0; left: 0; right: 0; top: 20px;
+  height: 8px; overflow: hidden; border-radius: 999px;
+  background: var(--border-strong);
 }
-.study-slider:disabled { opacity: .45; cursor: not-allowed; }
-.study-slider::-webkit-slider-thumb {
-  appearance: none; width: 28px; height: 28px; border-radius: 50%;
-  border: 3px solid var(--bg-raised); background: var(--good);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, .35); cursor: grab;
+.study-range-selected {
+  position: absolute; top: 0; bottom: 0; min-width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--good));
+  box-shadow: 0 0 16px color-mix(in srgb, var(--good) 25%, transparent);
 }
-.study-slider::-moz-range-thumb {
-  width: 22px; height: 22px; border-radius: 50%;
-  border: 3px solid var(--bg-raised); background: var(--good);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, .35); cursor: grab;
+.study-range-input {
+  appearance: none; position: absolute; z-index: 2; inset: 0;
+  width: 100%; height: 48px; margin: 0; outline: none;
+  background: transparent; pointer-events: none;
 }
-.study-slider:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.study-range-input--to { z-index: 3; }
+.study-range-input:disabled { opacity: .45; }
+.study-range-input::-webkit-slider-runnable-track { height: 8px; background: transparent; }
+.study-range-input::-webkit-slider-thumb {
+  appearance: none; width: 28px; height: 28px; margin-top: -10px;
+  border: 3px solid var(--bg-raised); border-radius: 50%;
+  background: var(--accent); box-shadow: 0 2px 8px rgba(0, 0, 0, .45);
+  cursor: grab; pointer-events: auto;
+}
+.study-range-input--to::-webkit-slider-thumb { background: var(--good); }
+.study-range-input::-moz-range-track { height: 8px; background: transparent; }
+.study-range-input::-moz-range-thumb {
+  width: 22px; height: 22px; border: 3px solid var(--bg-raised);
+  border-radius: 50%; background: var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .45); cursor: grab; pointer-events: auto;
+}
+.study-range-input--to::-moz-range-thumb { background: var(--good); }
+.study-range-control:focus-within {
+  border-radius: 999px;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 75%, transparent);
+}
 .study-slider-ticks { position: relative; height: 24px; margin: 2px 2px 0; }
 .study-slider-tick {
   position: absolute; top: 4px; transform: translateX(-50%);
@@ -271,10 +289,34 @@ a { color: var(--accent); }
   display: flex; justify-content: space-between; gap: 12px;
   color: var(--text-faint); font: 11.5px var(--mono);
 }
+.study-session-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.study-session {
+  display: inline-flex; align-items: stretch; overflow: hidden;
+  border: 1px solid var(--border); border-radius: 999px;
+  background: var(--bg-raised); transition: border-color .15s ease, background .15s ease;
+}
+.study-session.is-active {
+  border-color: color-mix(in srgb, var(--good) 60%, var(--border));
+  background: color-mix(in srgb, var(--good) 9%, var(--bg-raised));
+}
+.study-session-select,
+.study-session-remove {
+  border: 0; color: var(--text-muted); background: transparent; cursor: pointer;
+}
+.study-session-select { padding: 8px 10px 8px 12px; font: 600 11.5px var(--mono); }
+.study-session-remove {
+  width: 31px; border-left: 1px solid var(--border);
+  color: var(--text-faint); font-size: 18px; line-height: 1;
+}
+.study-session-select:hover,
+.study-session-remove:hover { color: var(--text); }
+.study-session-list + .btn { margin-top: 12px; }
 
 @media (max-width: 520px) {
   .study-slider-value { font-size: 11.5px; }
   .study-slider-tick:not(.is-first):not(.is-last):nth-child(even) { display: none; }
+  .study-range-input::-webkit-slider-thumb { width: 32px; height: 32px; margin-top: -12px; }
+  .study-session-select { font-size: 11px; }
 }
 .study-time-error { margin-top: 9px; }
 .form-section.is-locked .subject-grid { opacity: .5; }
