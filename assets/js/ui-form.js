@@ -1,9 +1,9 @@
-import { CONFIG } from './config.js?v=20260816-10';
-import { el, mount } from './dom.js?v=20260816-10';
-import { entryDetail } from './ui-entry.js?v=20260816-10';
-import { formatDateKey, formatWakeTime, istParts, istTimestamp, minutesFromMidnight, submittableDateKey } from './time.js?v=20260816-10';
-import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-10';
-import { isAlreadySubmittedError } from './github.js?v=20260816-10';
+import { CONFIG } from './config.js?v=20260816-11';
+import { el, mount } from './dom.js?v=20260816-11';
+import { entryDetail } from './ui-entry.js?v=20260816-11';
+import { formatDateKey, formatWakeTime, istParts, istTimestamp, minutesFromMidnight, submittableDateKey } from './time.js?v=20260816-11';
+import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-11';
+import { isAlreadySubmittedError } from './github.js?v=20260816-11';
 
 const COUNT_FIELDS = [
   { key: 'attempted', label: 'Questions done', hint: 'Attempted on your own' },
@@ -106,7 +106,8 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
         enabled: paperAnalysisEnabled,
         subjects: paperSubjects,
         score: inputs.get('paperAnalysis.score')?.value ?? ''
-      }
+      },
+      remarks: inputs.get('remarks')?.value ?? ''
     };
   }
 
@@ -442,6 +443,32 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     ]);
   }
 
+  function buildRemarksSection() {
+    const name = 'remarks';
+    const mark = () => {
+      touched.add(name);
+      paintValidation();
+    };
+    const area = el('textarea', {
+      class: 'input input--remarks',
+      rows: 5,
+      maxLength: 2000,
+      spellcheck: true,
+      autocapitalize: 'sentences',
+      placeholder: 'Write any remark, suggestion, concern, request, or anything else you want to share…',
+      oninput: mark,
+      onblur: mark
+    });
+    inputs.set(name, area);
+    const field = fieldShell('Remarks / suggestions', area, 'Optional — write anything you want to share.');
+    errorNodes.set(name, field.error);
+    return el('section', { class: 'form-section form-section--divided' }, [
+      el('h3', { class: 'section-title', text: 'Remarks / suggestions' }),
+      el('p', { class: 'section-note', text: 'Optional — this can be any note, concern, request, or suggestion.' }),
+      el('div', { class: 'remarks-field' }, [field.wrap])
+    ]);
+  }
+
   function buildForm() {
     touched.clear();
     inputs.clear();
@@ -507,6 +534,7 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
       selfPracticeSection,
       buildMockPaperSection(),
       buildPaperAnalysisSection(),
+      buildRemarksSection(),
       formError,
       el('div', { class: 'form-actions' }, [
         submitBtn,

@@ -1,5 +1,5 @@
-import { CONFIG } from './config.js?v=20260816-10';
-import { el } from './dom.js?v=20260816-10';
+import { CONFIG } from './config.js?v=20260816-11';
+import { el } from './dom.js?v=20260816-11';
 
 const DASH = '—';
 
@@ -145,6 +145,13 @@ export function entryDetail(document_) {
       ])
     : null;
 
+  const remarksBlock = typeof document_?.remarks === 'string' && document_.remarks.trim()
+    ? el('section', { class: 'entry-extra' }, [
+        el('h4', { class: 'topics-title', text: 'Remarks / suggestions' }),
+        el('p', { class: 'entry-remarks', text: document_.remarks })
+      ])
+    : null;
+
   return el('div', { class: 'entry-detail' }, [
     studyBlock,
     table,
@@ -155,6 +162,7 @@ export function entryDetail(document_) {
         ])
       : null,
     mockBlock,
-    analysisBlock
+    analysisBlock,
+    remarksBlock
   ]);
 }

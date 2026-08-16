@@ -1,8 +1,8 @@
-import { CONFIG } from './config.js?v=20260816-10';
-import { $, el, mount } from './dom.js?v=20260816-10';
-import { GitHubStore } from './github.js?v=20260816-10';
-import { entryDetail } from './ui-entry.js?v=20260816-10';
-import { formatDateKey, formatWakeTime, isValidDateKey, latestViewableDateKey } from './time.js?v=20260816-10';
+import { CONFIG } from './config.js?v=20260816-11';
+import { $, el, mount } from './dom.js?v=20260816-11';
+import { GitHubStore } from './github.js?v=20260816-11';
+import { entryDetail } from './ui-entry.js?v=20260816-11';
+import { formatDateKey, formatWakeTime, isValidDateKey, latestViewableDateKey } from './time.js?v=20260816-11';
 
 const slot = $('#entry-content');
 const dateKey = new URLSearchParams(location.search).get('date');
@@ -13,7 +13,7 @@ function showMessage(title, message) {
     el('div', { class: 'notice' }, [
       el('h2', { text: title }),
       el('p', { text: message }),
-      el('a', { class: 'btn btn--ghost entry-back-button', href: 'index.html?v=20260816-10', text: 'Back to calendar' })
+      el('a', { class: 'btn btn--ghost entry-back-button', href: 'index.html?v=20260816-11', text: 'Back to calendar' })
     ])
   ]);
 }

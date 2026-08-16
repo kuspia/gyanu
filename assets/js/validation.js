@@ -1,5 +1,5 @@
-import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-10';
-import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-10';
+import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-11';
+import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-11';
 
 export const WAKE_TIME_PATTERN = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
@@ -8,6 +8,7 @@ const TOPICS_MIN = 2;
 const TOPICS_MAX = 600;
 const MOCK_EXPERIENCE_MIN = 10;
 const MOCK_EXPERIENCE_MAX = 800;
+const REMARKS_MAX = 2000;
 const MAX_NEET_SCORE = 720;
 
 function countField(raw, label) {
@@ -161,6 +162,15 @@ function validateMockPaper(raw) {
   };
 }
 
+function validateRemarks(raw) {
+  const text = String(raw ?? '');
+  if (!text.trim()) return { value: null };
+  if (text.length > REMARKS_MAX) {
+    return { error: `Keep remarks and suggestions under ${REMARKS_MAX} characters.` };
+  }
+  return { value: text };
+}
+
 function validatePaperAnalysis(raw) {
   if (!raw?.enabled) return { errors: {}, value: null };
 
@@ -276,6 +286,9 @@ export function validateEntry(input) {
   const paperAnalysis = validatePaperAnalysis(input?.paperAnalysis);
   Object.assign(errors, paperAnalysis.errors);
 
+  const remarks = validateRemarks(input?.remarks);
+  if (remarks.error) errors.remarks = remarks.error;
+
   const hasSelfPractice = CONFIG.subjects.some(({ key }) => {
     const subject = input?.subjects?.[key];
     return ['attempted', 'correct', 'wrong', 'topics']
@@ -298,7 +311,8 @@ export function validateEntry(input) {
           subjects,
           totals: summarise(subjects),
           mockPaper: mockPaper.value,
-          paperAnalysis: paperAnalysis.value
+          paperAnalysis: paperAnalysis.value,
+          remarks: remarks.value
         }
       : null
   };
@@ -327,6 +341,7 @@ export function buildEntryDocument(validated, { submittedAt, source = 'web' }) {
     totals: validated.totals,
     mockPaper: validated.mockPaper,
     paperAnalysis: validated.paperAnalysis,
+    remarks: validated.remarks,
     submittedAt,
     source
   };
@@ -401,6 +416,14 @@ export function validateStoredDocument(doc, expectedDate) {
     if (!Number.isInteger(doc.paperAnalysis.score)
         || doc.paperAnalysis.score < 0 || doc.paperAnalysis.score > MAX_NEET_SCORE) {
       problems.push(`Paper analysis score must be between 0 and ${MAX_NEET_SCORE}.`);
+    }
+  }
+
+  if (doc.remarks !== undefined && doc.remarks !== null) {
+    if (typeof doc.remarks !== 'string' || !doc.remarks.trim()) {
+      problems.push('"remarks" must be non-empty text or null.');
+    } else if (doc.remarks.length > REMARKS_MAX) {
+      problems.push(`"remarks" must stay under ${REMARKS_MAX} characters.`);
     }
   }
   return problems;

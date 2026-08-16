@@ -268,6 +268,8 @@ a { color: var(--accent); }
 .choice-row + .field-error:not(:empty) { margin-top: 7px; }
 .choice-row ~ div > .field { margin-top: 14px; }
 .input--experience { resize: vertical; min-height: 108px; line-height: 1.45; }
+.remarks-field { margin-top: 14px; }
+.input--remarks { resize: vertical; min-height: 120px; line-height: 1.5; }
 .analysis-toggle { margin-top: 10px; }
 .score-row { margin-top: 16px; max-width: 230px; }
 .input--score { font-family: var(--mono); }
@@ -393,6 +395,11 @@ a { color: var(--accent); }
   margin-top: 9px; padding: 11px 13px; white-space: pre-wrap;
   border-left: 3px solid var(--accent); background: var(--bg-sunken);
   color: var(--text-dim); font-size: 13.5px;
+}
+.entry-remarks {
+  margin-top: 9px; padding: 12px 14px; white-space: pre-wrap;
+  border-left: 3px solid var(--accent); background: var(--bg-sunken);
+  color: var(--text); font-size: 13.5px; line-height: 1.55;
 }
 .entry-extra .table-wrap { margin-top: 12px; }
 

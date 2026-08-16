@@ -1,4 +1,4 @@
-import { CONFIG, ENTRY_PATH_PATTERN, entryPath } from './config.js?v=20260816-10';
+import { CONFIG, ENTRY_PATH_PATTERN, entryPath } from './config.js?v=20260816-11';
 
 const API = 'https://api.github.com';
 const RATE_WINDOW_SECONDS = 3600;
