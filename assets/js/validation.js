@@ -1,5 +1,5 @@
-import { CONFIG, SUBJECT_KEYS } from './config.js';
-import { isValidDateKey, minutesFromMidnight } from './time.js';
+import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-1';
+import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-1';
 
 export const WAKE_TIME_PATTERN = /^([01]\d|2[0-3]):([0-5]\d)$/;
 

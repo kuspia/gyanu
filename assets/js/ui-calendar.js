@@ -1,5 +1,5 @@
-import { CONFIG } from './config.js';
-import { el, mount } from './dom.js';
+import { CONFIG } from './config.js?v=20260816-1';
+import { el, mount } from './dom.js?v=20260816-1';
 import {
   MONTH_NAMES,
   WEEKDAY_SHORT,
@@ -10,7 +10,7 @@ import {
   minutesFromMidnight,
   minutesToClock,
   shiftDateKey
-} from './time.js';
+} from './time.js?v=20260816-1';
 
 const CONCURRENCY = 6;
 
@@ -217,7 +217,7 @@ export function createCalendarView({ store }) {
 
       nodes.push(el(clickable ? 'a' : 'div', {
         class: `day day--${status}`,
-        href: clickable ? `entry.html?date=${encodeURIComponent(dateKey)}` : null,
+        href: clickable ? `entry.html?v=20260816-1&date=${encodeURIComponent(dateKey)}` : null,
         dataset: { date: dateKey },
         'aria-label': label,
         title: status === 'hidden' ? 'Locked until the day is over' : null

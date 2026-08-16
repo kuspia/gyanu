@@ -1,9 +1,9 @@
-import { CONFIG } from './config.js';
-import { el, mount } from './dom.js';
-import { entryDetail } from './ui-entry.js';
-import { formatDateKey, formatWakeTime, istParts, istTimestamp, submittableDateKey } from './time.js';
-import { buildEntryDocument, validateEntry } from './validation.js';
-import { isAlreadySubmittedError } from './github.js';
+import { CONFIG } from './config.js?v=20260816-1';
+import { el, mount } from './dom.js?v=20260816-1';
+import { entryDetail } from './ui-entry.js?v=20260816-1';
+import { formatDateKey, formatWakeTime, istParts, istTimestamp, submittableDateKey } from './time.js?v=20260816-1';
+import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-1';
+import { isAlreadySubmittedError } from './github.js?v=20260816-1';
 
 const COUNT_FIELDS = [
   { key: 'attempted', label: 'Questions done', hint: 'Attempted on your own' },
