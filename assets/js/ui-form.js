@@ -771,7 +771,7 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
       entryDetail(document_),
       el('p', {
         class: 'entry-footnote',
-        text: `Wake-up ${formatWakeTime(document_.wakeUpTime)} · ${document_.totals?.attempted ?? 0} questions · ${document_.totals?.accuracy ?? '—'}% overall`
+        text: `Wake-up ${formatWakeTime(document_.wakeUpTime)} · ${document_.totals?.attempted ?? 0} self-practice questions · ${document_.totals?.accuracy ?? '—'}% self-practice accuracy`
       })
     ]);
   }
