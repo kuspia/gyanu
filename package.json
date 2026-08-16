@@ -1,0 +1,14 @@
+{
+  "name": "gyanu",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Append-only NEET daily progress tracker. Static GitHub Pages front end, JSON files in this repo as the datastore.",
+  "scripts": {
+    "dev": "node scripts/dev-server.js",
+    "verify": "node scripts/verify.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
