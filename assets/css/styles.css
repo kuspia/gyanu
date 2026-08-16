@@ -533,10 +533,8 @@ a.day:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
   border-color: color-mix(in srgb, var(--good) 45%, var(--border));
   background: color-mix(in srgb, var(--good) 13%, var(--bg-sunken));
 }
-.day--logged[data-tier="mid"] { border-color: color-mix(in srgb, var(--warn) 45%, var(--border)); background: color-mix(in srgb, var(--warn) 12%, var(--bg-sunken)); }
-.day--logged[data-tier="low"] { border-color: color-mix(in srgb, var(--bad) 40%, var(--border)); background: color-mix(in srgb, var(--bad) 10%, var(--bg-sunken)); }
-/* Logged, but no questions attempted — should not read as a strong day. */
-.day--logged[data-tier="none"] { border-color: var(--border-strong); background: var(--bg-sunken); color: var(--text-dim); }
+/* A submitted day is always green. Accuracy is shown only by the small bar,
+   so a low score can never be mistaken for a missed day. */
 
 .day-bar {
   position: absolute; left: 6px; right: 6px; bottom: 6px; height: 3px;

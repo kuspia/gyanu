@@ -1,5 +1,5 @@
-import { CONFIG } from './config.js?v=20260816-6';
-import { el, mount } from './dom.js?v=20260816-6';
+import { CONFIG } from './config.js?v=20260816-7';
+import { el, mount } from './dom.js?v=20260816-7';
 import {
   MONTH_NAMES,
   WEEKDAY_SHORT,
@@ -10,7 +10,7 @@ import {
   minutesFromMidnight,
   minutesToClock,
   shiftDateKey
-} from './time.js?v=20260816-6';
+} from './time.js?v=20260816-7';
 
 const CONCURRENCY = 6;
 const studyDuration = (total = 0) => {
@@ -224,7 +224,7 @@ export function createCalendarView({ store }) {
 
       nodes.push(el(clickable ? 'a' : 'div', {
         class: `day day--${status}`,
-        href: clickable ? `entry.html?v=20260816-6&date=${encodeURIComponent(dateKey)}` : null,
+        href: clickable ? `entry.html?v=20260816-7&date=${encodeURIComponent(dateKey)}` : null,
         dataset: { date: dateKey },
         'aria-label': label,
         title: status === 'hidden' ? 'Locked until the day is over' : null
