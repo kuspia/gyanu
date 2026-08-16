@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-15",
+  "wakeUpTime": "05:00",
+  "wakeUpMinutes": 300,
+  "studyTime": {
+    "totalMinutes": 780
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 300,
+      "correct": 0,
+      "wrong": 300,
+      "accuracy": 0,
+      "topics": "ku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\n\n\n\n",
+      "topicList": [
+        "ku-shagra shukla  [9:57 PM]",
+        "const CORP_ACTION_TYPES = ['shareSplit'",
+        "'bonus'",
+        "'shareConsolidation'",
+        "'relistingAmalgamation']",
+        "const EXCLUSION_DAYS = 4",
+        "const REINTRO_DAYS = 5",
+        "ku-shagra shukla  [9:57 PM]",
+        "const CORP_ACTION_TYPES = ['shareSplit'",
+        "'bonus'",
+        "'shareConsolidation'",
+        "'relistingAmalgamation']",
+        "const EXCLUSION_DAYS = 4",
+        "const REINTRO_DAYS = 5",
+        "ku-shagra shukla  [9:57 PM]",
+        "const CORP_ACTION_TYPES = ['shareSplit'",
+        "'bonus'",
+        "'shareConsolidation'",
+        "'relistingAmalgamation']",
+        "const EXCLUSION_DAYS = 4",
+        "const REINTRO_DAYS = 5",
+        "ku-shagra shukla  [9:57 PM]",
+        "const CORP_ACTION_TYPES = ['shareSplit'",
+        "'bonus'",
+        "'shareConsolidation'",
+        "'relistingAmalgamation']",
+        "const EXCLUSION_DAYS = 4",
+        "const REINTRO_DAYS = 5",
+        "ku-shagra shukla  [9:57 PM]",
+        "const CORP_ACTION_TYPES = ['shareSplit'",
+        "'bonus'",
+        "'shareConsolidation'",
+        "'relistingAmalgamation']",
+        "const EXCLUSION_DAYS = 4",
+        "const REINTRO_DAYS = 5",
+        "ku-shagra shukla  [9:57 PM]",
+        "const CORP_ACTION_TYPES = ['shareSplit'",
+        "'bonus'",
+        "'shareConsolidation'",
+        "'relistingAmalgamation']",
+        "const EXCLUSION_DAYS = 4",
+        "const REINTRO_DAYS = 5"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 10,
+      "correct": 10,
+      "wrong": 0,
+      "accuracy": 100,
+      "topics": "ku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\n\n\n\n",
+      "topicList": [
+        "ku-shagra shukla  [9:57 PM]",
+        "const CORP_ACTION_TYPES = ['shareSplit'",
+        "'bonus'",
+        "'shareConsolidation'",
+        "'relistingAmalgamation']",
+        "const EXCLUSION_DAYS = 4",
+        "const REINTRO_DAYS = 5",
+        "ku-shagra shukla  [9:57 PM]",
+        "const CORP_ACTION_TYPES = ['shareSplit'",
+        "'bonus'",
+        "'shareConsolidation'",
+        "'relistingAmalgamation']",
+        "const EXCLUSION_DAYS = 4",
+        "const REINTRO_DAYS = 5",
+        "ku-shagra shukla  [9:57 PM]",
+        "const CORP_ACTION_TYPES = ['shareSplit'",
+        "'bonus'",
+        "'shareConsolidation'",
+        "'relistingAmalgamation']",
+        "const EXCLUSION_DAYS = 4",
+        "const REINTRO_DAYS = 5",
+        "ku-shagra shukla  [9:57 PM]",
+        "const CORP_ACTION_TYPES = ['shareSplit'",
+        "'bonus'",
+        "'shareConsolidation'",
+        "'relistingAmalgamation']",
+        "const EXCLUSION_DAYS = 4",
+        "const REINTRO_DAYS = 5",
+        "ku-shagra shukla  [9:57 PM]",
+        "const CORP_ACTION_TYPES = ['shareSplit'",
+        "'bonus'",
+        "'shareConsolidation'",
+        "'relistingAmalgamation']",
+        "const EXCLUSION_DAYS = 4",
+        "const REINTRO_DAYS = 5",
+        "ku-shagra shukla  [9:57 PM]",
+        "const CORP_ACTION_TYPES = ['shareSplit'",
+        "'bonus'",
+        "'shareConsolidation'",
+        "'relistingAmalgamation']",
+        "const EXCLUSION_DAYS = 4",
+        "const REINTRO_DAYS = 5"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 0,
+      "correct": 0,
+      "wrong": 0,
+      "accuracy": null,
+      "topics": "natgdf",
+      "topicList": [
+        "natgdf"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 310,
+    "correct": 10,
+    "wrong": 300,
+    "accuracy": 3.2
+  },
+  "mockPaper": {
+    "taken": true,
+    "experience": "ku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n\n\n\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareCon"
+  },
+  "paperAnalysis": {
+    "subjects": {
+      "physics": {
+        "attempted": 10,
+        "correct": 10,
+        "wrong": 0,
+        "accuracy": 100
+      },
+      "chemistry": {
+        "attempted": 12,
+        "correct": 12,
+        "wrong": 0,
+        "accuracy": 100
+      },
+      "biology": {
+        "attempted": 0,
+        "correct": 0,
+        "wrong": 0,
+        "accuracy": null
+      }
+    },
+    "score": 720,
+    "maxScore": 720,
+    "reflection": "ku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n"
+  },
+  "remarks": "ku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\nku-shagra shukla  [9:57 PM]\nconst CORP_ACTION_TYPES = ['shareSplit', 'bonus', 'shareConsolidation', 'relistingAmalgamation'];\nconst EXCLUSION_DAYS = 4;\nconst REINTRO_DAYS = 5;\n",
+  "submittedAt": "2026-08-16T18:25:56+05:30",
+  "source": "web"
+}
