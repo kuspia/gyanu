@@ -141,7 +141,13 @@ export function entryDetail(document_) {
               ]);
             }))
           ])
-        ])
+        ]),
+        analysis.reflection
+          ? el('div', { class: 'paper-reflection' }, [
+              el('h5', { text: 'Issues, causes, and improvement plan' }),
+              el('p', { text: analysis.reflection })
+            ])
+          : null
       ])
     : null;
 

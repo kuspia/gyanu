@@ -1,7 +1,7 @@
 import { CONFIG } from './config.js?v=20260816-11';
 import { $, el, mount } from './dom.js?v=20260816-11';
 import { GitHubStore } from './github.js?v=20260816-11';
-import { entryDetail } from './ui-entry.js?v=20260816-12';
+import { entryDetail } from './ui-entry.js?v=20260816-14';
 import { formatDateKey, formatWakeTime, isValidDateKey, latestViewableDateKey } from './time.js?v=20260816-11';
 
 const slot = $('#entry-content');

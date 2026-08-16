@@ -9,6 +9,8 @@ const TOPICS_MAX = 600;
 const MOCK_EXPERIENCE_MIN = 10;
 const MOCK_EXPERIENCE_MAX = 800;
 const REMARKS_MAX = 2000;
+const PAPER_REFLECTION_MIN = 100;
+const PAPER_REFLECTION_MAX = 2000;
 const MAX_NEET_SCORE = 720;
 
 function countField(raw, label) {
@@ -209,10 +211,20 @@ function validatePaperAnalysis(raw) {
     errors['paperAnalysis.score'] = `Total marks cannot be more than ${MAX_NEET_SCORE}.`;
   }
 
+  const reflection = String(raw.reflection ?? '');
+  const reflectionLength = reflection.trim().length;
+  if (reflectionLength < PAPER_REFLECTION_MIN) {
+    errors['paperAnalysis.reflection'] =
+      `Explain the issues, causes, and improvement plan in at least ${PAPER_REFLECTION_MIN} characters.`;
+  } else if (reflection.length > PAPER_REFLECTION_MAX) {
+    errors['paperAnalysis.reflection'] =
+      `Keep the paper reflection under ${PAPER_REFLECTION_MAX} characters.`;
+  }
+
   return {
     errors,
     value: Object.keys(errors).length === 0
-      ? { subjects, score: Number(scoreText), maxScore: MAX_NEET_SCORE }
+      ? { subjects, score: Number(scoreText), maxScore: MAX_NEET_SCORE, reflection }
       : null
   };
 }
@@ -416,6 +428,12 @@ export function validateStoredDocument(doc, expectedDate) {
     if (!Number.isInteger(doc.paperAnalysis.score)
         || doc.paperAnalysis.score < 0 || doc.paperAnalysis.score > MAX_NEET_SCORE) {
       problems.push(`Paper analysis score must be between 0 and ${MAX_NEET_SCORE}.`);
+    }
+    const reflection = doc.paperAnalysis.reflection;
+    if (typeof reflection !== 'string' || reflection.trim().length < PAPER_REFLECTION_MIN) {
+      problems.push(`Paper analysis reflection must contain at least ${PAPER_REFLECTION_MIN} characters.`);
+    } else if (reflection.length > PAPER_REFLECTION_MAX) {
+      problems.push(`Paper analysis reflection must stay under ${PAPER_REFLECTION_MAX} characters.`);
     }
   }
 

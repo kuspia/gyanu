@@ -1,8 +1,8 @@
 import { CONFIG } from './config.js?v=20260816-11';
 import { el, mount } from './dom.js?v=20260816-11';
-import { entryDetail } from './ui-entry.js?v=20260816-12';
+import { entryDetail } from './ui-entry.js?v=20260816-14';
 import { formatDateKey, formatWakeTime, istParts, istTimestamp, minutesFromMidnight, submittableDateKey } from './time.js?v=20260816-11';
-import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-11';
+import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-14';
 import { isAlreadySubmittedError } from './github.js?v=20260816-11';
 
 const COUNT_FIELDS = [
@@ -105,7 +105,8 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
       paperAnalysis: {
         enabled: paperAnalysisEnabled,
         subjects: paperSubjects,
-        score: inputs.get('paperAnalysis.score')?.value ?? ''
+        score: inputs.get('paperAnalysis.score')?.value ?? '',
+        reflection: inputs.get('paperAnalysis.reflection')?.value ?? ''
       },
       remarks: inputs.get('remarks')?.value ?? ''
     };
@@ -419,10 +420,44 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
       const scoreField = fieldShell('Total marks out of 720', scoreInput, null);
       errorNodes.set(scoreName, scoreField.error);
 
+      const reflectionName = 'paperAnalysis.reflection';
+      const reflectionCount = el('span', {
+        class: 'analysis-reflection-count',
+        text: '0 / 100 characters — mandatory'
+      });
+      const reflectionInput = el('textarea', {
+        class: 'input input--analysis-reflection',
+        rows: 6,
+        minLength: 100,
+        maxLength: 2000,
+        spellcheck: true,
+        autocapitalize: 'sentences',
+        placeholder: 'What problems did you face? Why did they happen? What exactly will you change before the next paper?',
+        oninput: (event) => {
+          const length = event.currentTarget.value.trim().length;
+          reflectionCount.textContent = `${length} / 100 characters${length >= 100 ? ' — complete' : ' — mandatory'}`;
+          reflectionCount.classList.toggle('is-complete', length >= 100);
+          touched.add(reflectionName);
+          paintValidation();
+        },
+        onblur: () => {
+          touched.add(reflectionName);
+          paintValidation();
+        }
+      });
+      inputs.set(reflectionName, reflectionInput);
+      const reflectionField = fieldShell(
+        'Issues faced, why they happened, and improvement plan',
+        reflectionInput,
+        'Mandatory — write at least 100 meaningful characters. The paper analysis cannot be submitted without it.'
+      );
+      errorNodes.set(reflectionName, reflectionField.error);
+
       mount(analysisSlot, [
         el('p', { class: 'section-note', text: 'Fill all three subjects. Right + Wrong must equal Questions done.' }),
         el('div', { class: 'subject-grid' }, cards),
-        el('div', { class: 'score-row' }, [scoreField.wrap])
+        el('div', { class: 'score-row' }, [scoreField.wrap]),
+        el('div', { class: 'analysis-reflection' }, [reflectionField.wrap, reflectionCount])
       ]);
     }
 
