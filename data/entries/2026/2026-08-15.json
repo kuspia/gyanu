@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-15",
+  "wakeUpTime": "21:38",
+  "wakeUpMinutes": 1298,
+  "studyTime": {
+    "totalMinutes": 60
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 1,
+      "correct": 1,
+      "wrong": 0,
+      "accuracy": 100,
+      "topics": "Gshdhdhfnnr",
+      "topicList": [
+        "Gshdhdhfnnr"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 1,
+      "correct": 1,
+      "wrong": 0,
+      "accuracy": 100,
+      "topics": "Sghduduu",
+      "topicList": [
+        "Sghduduu"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 1,
+      "correct": 1,
+      "wrong": 0,
+      "accuracy": 100,
+      "topics": "Vehegdhhr",
+      "topicList": [
+        "Vehegdhhr"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 3,
+    "correct": 3,
+    "wrong": 0,
+    "accuracy": 100
+  },
+  "mockPaper": {
+    "taken": true,
+    "experience": "Gsgdhdhdhdhbdbdi8duebbdjdhej"
+  },
+  "paperAnalysis": {
+    "subjects": {
+      "physics": {
+        "attempted": 1,
+        "correct": 1,
+        "wrong": 0,
+        "accuracy": 100
+      },
+      "chemistry": {
+        "attempted": 1,
+        "correct": 1,
+        "wrong": 0,
+        "accuracy": 100
+      },
+      "biology": {
+        "attempted": 1,
+        "correct": 1,
+        "wrong": 0,
+        "accuracy": 100
+      }
+    },
+    "totals": {
+      "attempted": 3,
+      "correct": 3,
+      "wrong": 0,
+      "accuracy": 100
+    },
+    "score": 12,
+    "maxScore": 720,
+    "reflection": "Geggeydydbbdbjdhduduevbdjf7eyvebdu7e ejsisg eid8egbeid83vbejdjidudgbejdiieiebebjeieiyevehei8euevbeie8g3vri"
+  },
+  "remarks": "Hdhhdhdhd",
+  "submittedAt": "2026-08-16T21:39:23+05:30",
+  "source": "web"
+}
