@@ -1,5 +1,5 @@
-import { CONFIG } from './config.js?v=20260816-7';
-import { el } from './dom.js?v=20260816-7';
+import { CONFIG } from './config.js?v=20260816-10';
+import { el } from './dom.js?v=20260816-10';
 
 const DASH = '—';
 
@@ -48,16 +48,11 @@ export function entryDetail(document_) {
     ? studyTime.sessions
     : (Number.isInteger(studyTime?.fromMinutes) && Number.isInteger(studyTime?.toMinutes)
         ? [{ fromMinutes: studyTime.fromMinutes, toMinutes: studyTime.toMinutes }]
-        : (studyTime?.totalMinutes > 0 && Number.isInteger(document_?.wakeUpMinutes)
-            ? [{
-                fromMinutes: document_.wakeUpMinutes,
-                toMinutes: document_.wakeUpMinutes + studyTime.totalMinutes
-              }]
-            : []));
+        : []);
   const studyBlock = studyTime
     ? el('section', { class: 'study-summary' }, [
         el('div', {}, [
-          el('span', { class: 'study-summary-label', text: 'Total study time' }),
+          el('span', { class: 'study-summary-label', text: 'Total productive study time' }),
           el('strong', { class: 'study-summary-total', text: durationLabel(studyTime.totalMinutes) })
         ]),
         savedSessions.length
@@ -65,7 +60,10 @@ export function entryDetail(document_) {
               el('span', {
                 text: `Period ${index + 1} · ${clockFromMinutes(session.fromMinutes)}–${clockFromMinutes(session.toMinutes)} · ${durationLabel(session.toMinutes - session.fromMinutes)}`
               })))
-          : el('span', { class: 'study-zero', text: '0 hours recorded' })
+          : el('span', {
+              class: 'study-zero',
+              text: studyTime.totalMinutes > 0 ? 'Entered as one honest daily total' : '0 hours recorded'
+            })
       ])
     : null;
 
@@ -98,12 +96,9 @@ export function entryDetail(document_) {
       const s = document_?.subjects?.[key];
       const raw = s?.topics;
       if (!raw || !String(raw).trim()) return null;
-      const list = Array.isArray(s.topicList) && s.topicList.length ? s.topicList : null;
       return el('div', { class: `topic-block topic-block--${key}` }, [
         el('h4', { class: 'topic-head', text: label }),
-        list
-          ? el('ul', { class: 'topic-list' }, list.map((t) => el('li', { text: t })))
-          : el('p', { class: 'topic-raw', text: String(raw) })
+        el('p', { class: 'topic-raw', text: String(raw) })
       ]);
     })
     .filter(Boolean);
@@ -155,7 +150,7 @@ export function entryDetail(document_) {
     table,
     topicBlocks.length
       ? el('section', { class: 'topics' }, [
-          el('h4', { class: 'topics-title', text: 'Topics studied' }),
+          el('h4', { class: 'topics-title', text: 'Topics studied, challenges faced, and help needed (if any)' }),
           el('div', { class: 'topic-grid' }, topicBlocks)
         ])
       : null,

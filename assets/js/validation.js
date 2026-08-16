@@ -1,5 +1,5 @@
-import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-7';
-import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-7';
+import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-10';
+import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-10';
 
 export const WAKE_TIME_PATTERN = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
@@ -215,11 +215,18 @@ function validateStudyTime(raw, wakeUpTime) {
     : (Number.isInteger(raw?.fromMinutes) && Number.isInteger(raw?.toMinutes)
         && raw.toMinutes > raw.fromMinutes
       ? [{ fromMinutes: raw.fromMinutes, toMinutes: raw.toMinutes }]
-      : []);
+      : null);
 
   if (!Number.isInteger(totalMinutes) || totalMinutes < 0 || wakeMinutes === null) {
     return { error: 'Study time is invalid.', value: null };
   }
+  if (totalMinutes > 1440 - wakeMinutes) {
+    return { error: 'Productive study time cannot exceed the time between waking up and midnight.', value: null };
+  }
+
+  // Older entries stored exact periods. Keep validating and displaying them;
+  // new entries intentionally store one honest productive-time total only.
+  if (!sessions) return { value: { totalMinutes } };
 
   let calculatedTotal = 0;
   let previousEnd = wakeMinutes;
@@ -275,7 +282,7 @@ export function validateEntry(input) {
       .some((field) => String(subject?.[field] ?? '').trim() !== '');
   });
   if (studyTime.value?.totalMinutes === 0 && hasSelfPractice) {
-    errors.studyTime = 'Study time is 0 hours. Add a study period first, or clear every Self-practice field.';
+    errors.studyTime = 'Productive study time is 0 hours. Enter the total first, or clear every Self-practice field.';
   }
 
   const valid = Object.keys(errors).length === 0;

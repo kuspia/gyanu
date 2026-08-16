@@ -1,9 +1,10 @@
-import { CONFIG } from './config.js?v=20260816-7';
-import { $, el, mount } from './dom.js?v=20260816-7';
-import { GitHubStore } from './github.js?v=20260816-7';
-import { createCalendarView } from './ui-calendar.js?v=20260816-9';
-import { createSubmitView } from './ui-form.js?v=20260816-8';
-import { formatDateKey, istClock, istDateKey } from './time.js?v=20260816-7';
+import { CONFIG } from './config.js?v=20260816-10';
+import { $, el, mount } from './dom.js?v=20260816-10';
+import { GitHubStore } from './github.js?v=20260816-10';
+import { createCalendarView } from './ui-calendar.js?v=20260816-10';
+import { createSubmitView } from './ui-form.js?v=20260816-10';
+import { createMockResultsView } from './ui-mocks.js?v=20260816-10';
+import { formatDateKey, istClock, istDateKey } from './time.js?v=20260816-10';
 
 const store = new GitHubStore(localStorage.getItem(CONFIG.storageKeys.token));
 
@@ -17,17 +18,22 @@ const dialog = $('#token-dialog');
 const SETUP_MODE = new URLSearchParams(location.search).has('setup');
 
 const calendar = createCalendarView({ store });
+const mockResults = createMockResultsView({ store });
 const submit = createSubmitView({
   store,
   onRequestToken: SETUP_MODE ? () => openTokenDialog() : null,
   onAuthFailure: () => showBanner('The saved GitHub token was rejected. Progress cannot be submitted until it is replaced.'),
   onBrowse: () => switchTab('view'),
-  onSubmitted: (dateKey, document_) => calendar.noteNewEntry(dateKey, document_)
+  onSubmitted: (dateKey, document_) => {
+    calendar.noteNewEntry(dateKey, document_);
+    mockResults.noteNewEntry(dateKey, document_);
+  }
 });
 
 const TABS = [
   { id: 'submit', label: 'Submit progress', view: submit },
-  { id: 'view', label: 'View progress', view: calendar }
+  { id: 'view', label: 'View progress', view: calendar },
+  { id: 'mocks', label: 'View mock results', view: mockResults }
 ];
 
 let activeTab = 'view';
