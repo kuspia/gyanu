@@ -370,7 +370,7 @@ a { color: var(--accent); }
 
 /* ---------- tables ---------- */
 
-.table-wrap { overflow-x: auto; margin-top: 16px; }
+.table-wrap { min-width: 0; max-width: 100%; overflow-x: auto; margin-top: 16px; }
 .entry-table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 420px; }
 .entry-table th, .entry-table td { padding: 9px 10px; text-align: right; border-bottom: 1px solid var(--border); }
 .entry-table th[scope="row"] { text-align: left; font-weight: 600; }
@@ -404,18 +404,21 @@ a { color: var(--accent); }
 
 .topics { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
 .topics-title { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-faint); font-weight: 650; }
-.topic-grid { display: grid; gap: 12px; margin-top: 12px; }
+.topic-grid { display: grid; gap: 12px; margin-top: 12px; min-width: 0; }
 @media (min-width: 720px) { .topic-grid { grid-template-columns: repeat(3, 1fr); } }
 
 .topic-block {
   border-left: 3px solid var(--border-strong);
-  padding-left: 11px;
+  padding-left: 11px; min-width: 0;
 }
 .topic-block--physics { border-left-color: var(--physics); }
 .topic-block--chemistry { border-left-color: var(--chemistry); }
 .topic-block--biology { border-left-color: var(--biology); }
 .topic-head { font-size: 12px; font-weight: 650; color: var(--text-dim); margin-bottom: 5px; }
-.topic-raw { font-size: 13px; color: var(--text); white-space: pre-wrap; }
+.topic-raw {
+  font-size: 13px; color: var(--text); white-space: pre-wrap;
+  overflow-wrap: anywhere; word-break: break-word;
+}
 
 .entry-extra { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
 .entry-extra-value { margin-top: 7px; font-weight: 650; }
@@ -423,35 +426,41 @@ a { color: var(--accent); }
   margin-top: 9px; padding: 11px 13px; white-space: pre-wrap;
   border-left: 3px solid var(--accent); background: var(--bg-sunken);
   color: var(--text-dim); font-size: 13.5px;
+  overflow-wrap: anywhere; word-break: break-word;
 }
 .entry-remarks {
   margin-top: 9px; padding: 12px 14px; white-space: pre-wrap;
   border-left: 3px solid var(--accent); background: var(--bg-sunken);
   color: var(--text); font-size: 13.5px; line-height: 1.55;
+  overflow-wrap: anywhere; word-break: break-word;
 }
 .entry-extra .table-wrap { margin-top: 12px; }
 
 /* ---------- mock history ---------- */
 
-.mock-results-list { display: grid; gap: 18px; }
+.mock-results-list { display: grid; gap: 18px; min-width: 0; }
 .mock-result-card {
   padding: 18px; border: 1px solid var(--border); border-radius: var(--radius-sm);
-  background: var(--bg-sunken);
+  background: var(--bg-sunken); min-width: 0; max-width: 100%; overflow: hidden;
 }
-.mock-result-head { align-items: center; }
+.mock-result-head { align-items: center; min-width: 0; }
 .mock-result-date { margin-top: 4px; font-size: 17px; font-weight: 650; }
 .mock-result-score { font-size: 14px; padding: 7px 12px; }
 .mock-result-card .table-wrap { margin-top: 16px; }
 .paper-reflection {
   margin-top: 16px; padding: 13px 14px;
   border-left: 3px solid var(--accent); background: var(--bg-raised);
+  min-width: 0; max-width: 100%;
 }
 .paper-reflection h4,
 .paper-reflection h5 {
   color: var(--text-faint); font-size: 11px; font-weight: 650;
   letter-spacing: .07em; text-transform: uppercase;
 }
-.paper-reflection p { margin-top: 7px; color: var(--text); font-size: 13.5px; line-height: 1.55; white-space: pre-wrap; }
+.paper-reflection p {
+  margin-top: 7px; color: var(--text); font-size: 13.5px; line-height: 1.55;
+  white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word;
+}
 
 /* ---------- stats ---------- */
 

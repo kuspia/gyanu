@@ -1,6 +1,6 @@
-import { CONFIG } from './config.js?v=20260816-16';
-import { el, mount } from './dom.js?v=20260816-16';
-import { formatDateKey, latestViewableDateKey } from './time.js?v=20260816-16';
+import { CONFIG } from './config.js?v=20260816-17';
+import { el, mount } from './dom.js?v=20260816-17';
+import { formatDateKey, latestViewableDateKey } from './time.js?v=20260816-17';
 
 const DASH = '—';
 const pct = (value) => value === null || value === undefined ? DASH : `${value}%`;
