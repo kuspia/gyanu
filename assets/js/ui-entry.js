@@ -1,5 +1,5 @@
-import { CONFIG } from './config.js?v=20260816-1';
-import { el } from './dom.js?v=20260816-1';
+import { CONFIG } from './config.js?v=20260816-2';
+import { el } from './dom.js?v=20260816-2';
 
 const DASH = '—';
 

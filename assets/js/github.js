@@ -1,4 +1,4 @@
-import { CONFIG, ENTRY_PATH_PATTERN, entryPath } from './config.js?v=20260816-1';
+import { CONFIG, ENTRY_PATH_PATTERN, entryPath } from './config.js?v=20260816-2';
 
 const API = 'https://api.github.com';
 const RATE_WINDOW_SECONDS = 3600;
@@ -155,15 +155,20 @@ export class GitHubStore {
   // asset — no rate limit, for any number of viewers. The Trees API below is
   // only a bootstrap fallback for when that file is missing.
   async listEntryDates() {
-    const local = this.#readListCache()?.dates ?? [];
+    const cached = this.#readListCache();
+    const local = cached?.dates ?? [];
     try {
       const response = await fetch(new URL(`${INDEX_PATH}`, PAGE_BASE), { cache: 'no-store' });
       if (response.ok) {
         const body = await response.json();
         if (Array.isArray(body?.dates)) {
           // Entries submitted from this device are merged in until the Pages
-          // rebuild publishes them, so a fresh submission appears at once.
-          return [...new Set([...body.dates, ...local])].sort();
+          // rebuild publishes them. Once the index is newer than that local
+          // cache it becomes authoritative, including intentional deletions.
+          const indexUpdatedAt = Date.parse(body.updatedAt ?? '');
+          const localIsNewer = !Number.isFinite(indexUpdatedAt)
+            || Number(cached?.fetchedAt ?? 0) > indexUpdatedAt;
+          return [...new Set([...body.dates, ...(localIsNewer ? local : [])])].sort();
         }
       }
     } catch {
