@@ -1,5 +1,5 @@
-import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-4';
-import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-4';
+import { CONFIG, SUBJECT_KEYS } from './config.js?v=20260816-5';
+import { isValidDateKey, minutesFromMidnight } from './time.js?v=20260816-5';
 
 export const WAKE_TIME_PATTERN = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
@@ -209,32 +209,14 @@ function validatePaperAnalysis(raw) {
 
 function validateStudyTime(raw, wakeUpTime) {
   const totalMinutes = Number(raw?.totalMinutes ?? 0);
-  const segments = Array.isArray(raw?.segments) ? raw.segments : [];
   const wakeMinutes = minutesFromMidnight(wakeUpTime);
-  let calculatedTotal = 0;
-  let previousEnd = wakeMinutes;
+  const availableMinutes = wakeMinutes === null ? null : 1440 - wakeMinutes;
 
-  if (!Number.isInteger(totalMinutes) || totalMinutes < 0 || totalMinutes > 1440) {
+  if (!Number.isInteger(totalMinutes) || totalMinutes < 0
+      || (availableMinutes !== null && totalMinutes > availableMinutes)) {
     return { error: 'Study time is invalid.', value: null };
   }
-
-  for (const segment of segments) {
-    const start = segment?.startMinutes;
-    const end = segment?.endMinutes;
-    if (!Number.isInteger(start) || !Number.isInteger(end)
-        || wakeMinutes === null || start < wakeMinutes || start < previousEnd
-        || end <= start || end > 1440) {
-      return { error: 'Study timeline contains an invalid time block.', value: null };
-    }
-    calculatedTotal += end - start;
-    previousEnd = end;
-  }
-
-  if (calculatedTotal !== totalMinutes) {
-    return { error: 'Study-time total does not match the selected blocks.', value: null };
-  }
-
-  return { value: { totalMinutes, segments } };
+  return { value: { totalMinutes } };
 }
 
 export function validateEntry(input) {

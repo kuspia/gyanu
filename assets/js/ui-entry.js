@@ -1,11 +1,11 @@
-import { CONFIG } from './config.js?v=20260816-4';
-import { el } from './dom.js?v=20260816-4';
+import { CONFIG } from './config.js?v=20260816-5';
+import { el } from './dom.js?v=20260816-5';
 
 const DASH = '—';
 
 const pct = (value) => (value === null || value === undefined ? DASH : `${value}%`);
 const padTime = (value) => String(value).padStart(2, '0');
-const clockFromMinutes = (total) => total === 1440
+const clockFromMinutes = (total) => total >= 1440
   ? '24:00'
   : `${padTime(Math.floor(total / 60))}:${padTime(total % 60)}`;
 const durationLabel = (total = 0) => {
@@ -50,13 +50,12 @@ export function entryDetail(document_) {
           el('span', { class: 'study-summary-label', text: 'Total study time' }),
           el('strong', { class: 'study-summary-total', text: durationLabel(studyTime.totalMinutes) })
         ]),
-        Array.isArray(studyTime.segments) && studyTime.segments.length
-          ? el('div', { class: 'study-sessions' }, studyTime.segments.map((segment) =>
-              el('span', {
-                text: `${clockFromMinutes(segment.startMinutes)}–${clockFromMinutes(segment.endMinutes)}`
-              })
-            ))
-          : el('span', { class: 'study-zero', text: 'No study blocks marked' })
+        el('span', {
+          class: 'study-zero',
+          text: studyTime.totalMinutes > 0
+            ? `${clockFromMinutes(document_.wakeUpMinutes)}–${clockFromMinutes(document_.wakeUpMinutes + studyTime.totalMinutes)}`
+            : '0 hours recorded'
+        })
       ])
     : null;
 

@@ -1,9 +1,9 @@
-import { CONFIG } from './config.js?v=20260816-4';
-import { el, mount } from './dom.js?v=20260816-4';
-import { entryDetail } from './ui-entry.js?v=20260816-4';
-import { formatDateKey, formatWakeTime, istParts, istTimestamp, minutesFromMidnight, submittableDateKey } from './time.js?v=20260816-4';
-import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-4';
-import { isAlreadySubmittedError } from './github.js?v=20260816-4';
+import { CONFIG } from './config.js?v=20260816-5';
+import { el, mount } from './dom.js?v=20260816-5';
+import { entryDetail } from './ui-entry.js?v=20260816-5';
+import { formatDateKey, formatWakeTime, istParts, istTimestamp, minutesFromMidnight, submittableDateKey } from './time.js?v=20260816-5';
+import { buildEntryDocument, validateEntry } from './validation.js?v=20260816-5';
+import { isAlreadySubmittedError } from './github.js?v=20260816-5';
 
 const COUNT_FIELDS = [
   { key: 'attempted', label: 'Questions done', hint: 'Attempted on your own' },
@@ -22,17 +22,17 @@ function fieldShell(labelText, input, hint) {
   return { wrap, error };
 }
 
-const padTime = (value) => String(value).padStart(2, '0');
-function clockFromMinutes(total) {
-  if (total === 1440) return '24:00';
-  return `${padTime(Math.floor(total / 60))}:${padTime(total % 60)}`;
-}
-
 function durationLabel(totalMinutes) {
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
   if (!hours) return `${minutes} min`;
   return minutes ? `${hours}h ${minutes}m` : `${hours}h`;
+}
+
+const padTime = (value) => String(value).padStart(2, '0');
+function clockFromMinutes(totalMinutes) {
+  if (totalMinutes >= 1440) return '24:00';
+  return `${padTime(Math.floor(totalMinutes / 60))}:${padTime(totalMinutes % 60)}`;
 }
 
 export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFailure, onBrowse }) {
@@ -52,26 +52,13 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
   let formError = null;
   let mockTaken = '';
   let paperAnalysisEnabled = false;
-  let studySlots = [];
-  const selectedStudySlots = new Set();
+  let studyMinutes = 0;
+  let studyWakeMinutes = null;
   let selfPracticeSection = null;
   let selfPracticeNote = null;
 
   function studyTimeValue() {
-    const chosen = studySlots.filter((_, index) => selectedStudySlots.has(index));
-    const segments = [];
-    for (const slot_ of chosen) {
-      const previous = segments.at(-1);
-      if (previous?.endMinutes === slot_.startMinutes) {
-        previous.endMinutes = slot_.endMinutes;
-      } else {
-        segments.push({ startMinutes: slot_.startMinutes, endMinutes: slot_.endMinutes });
-      }
-    }
-    return {
-      totalMinutes: chosen.reduce((sum, slot_) => sum + slot_.endMinutes - slot_.startMinutes, 0),
-      segments
-    };
+    return { totalMinutes: studyMinutes };
   }
 
   function hasSelfPracticeInput() {
@@ -224,59 +211,86 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     return wrap;
   }
 
-  function buildStudyTimelineSection(wakeInput) {
-    const timeline = el('div', { class: 'time-cycle' });
+  function buildStudyTimeSection(wakeInput) {
     const total = el('strong', { class: 'study-total', text: '0h studied' });
     const error = el('p', { class: 'field-error study-time-error', role: 'alert' });
     errorNodes.set('studyTime', error);
 
+    const slider = el('input', {
+      type: 'range',
+      class: 'study-slider',
+      min: 0,
+      max: 0,
+      step: 5,
+      value: 0,
+      disabled: true,
+      'aria-label': 'Total time studied'
+    });
+    const startLabel = el('span', { text: 'Enter wake-up time first' });
+    const maxLabel = el('span', { text: 'To midnight' });
+    const ticks = el('div', { class: 'study-slider-ticks' });
+    const liveValue = el('output', { class: 'study-slider-value', text: '0 minutes' });
+
     function renderTotal() {
-      const minutes = studyTimeValue().totalMinutes;
-      total.textContent = `${durationLabel(minutes)} studied`;
-      total.classList.toggle('has-time', minutes > 0);
+      total.textContent = `${durationLabel(studyMinutes)} studied`;
+      total.classList.toggle('has-time', studyMinutes > 0);
+      liveValue.textContent = studyWakeMinutes === null
+        ? 'Enter wake-up time to begin'
+        : `From ${clockFromMinutes(studyWakeMinutes)} → To ${clockFromMinutes(studyWakeMinutes + studyMinutes)} · ${durationLabel(studyMinutes)} · ${studyMinutes} ${studyMinutes === 1 ? 'minute' : 'minutes'}`;
+      const maximum = Number(slider.max) || 0;
+      const progress = maximum ? (studyMinutes / maximum) * 100 : 0;
+      slider.style.setProperty('--study-progress', `${progress}%`);
+      slider.setAttribute('aria-valuetext', `${studyMinutes} minutes studied`);
     }
 
     function refresh() {
-      selectedStudySlots.clear();
-      studySlots = [];
+      studyMinutes = 0;
       const wakeMinutes = minutesFromMidnight(wakeInput.value);
+      studyWakeMinutes = wakeMinutes;
       if (wakeMinutes === null) {
-        mount(timeline, [el('p', { class: 'timeline-empty', text: 'Enter wake-up time to open the study timeline.' })]);
+        slider.max = '0';
+        slider.value = '0';
+        slider.disabled = true;
+        startLabel.textContent = 'Enter wake-up time first';
+        maxLabel.textContent = 'To midnight';
+        mount(ticks, []);
         renderTotal();
         syncSelfPracticeAvailability();
         return;
       }
 
-      for (let start = wakeMinutes; start < 1440; start += 30) {
-        studySlots.push({ startMinutes: start, endMinutes: Math.min(start + 30, 1440) });
-      }
-
-      mount(timeline, studySlots.map((slot_, index) => el('button', {
-        type: 'button',
-        class: 'time-slot',
-        'aria-pressed': 'false',
-        'aria-label': `${clockFromMinutes(slot_.startMinutes)} to ${clockFromMinutes(slot_.endMinutes)}`,
-        text: `${clockFromMinutes(slot_.startMinutes)}–${clockFromMinutes(slot_.endMinutes)}`,
-        onclick: (event) => {
-          if (selectedStudySlots.has(index)
-              && selectedStudySlots.size === 1 && hasSelfPracticeInput()) {
-            error.textContent = 'Clear every Self-practice field before removing the final study block.';
-            return;
-          }
-          if (selectedStudySlots.has(index)) selectedStudySlots.delete(index);
-          else selectedStudySlots.add(index);
-          const selected = selectedStudySlots.has(index);
-          event.currentTarget.classList.toggle('is-selected', selected);
-          event.currentTarget.setAttribute('aria-pressed', String(selected));
-          touched.add('studyTime');
-          renderTotal();
-          syncSelfPracticeAvailability();
-          paintValidation();
-        }
+      const availableMinutes = 1440 - wakeMinutes;
+      slider.max = String(availableMinutes);
+      slider.value = '0';
+      slider.disabled = false;
+      startLabel.textContent = `From ${clockFromMinutes(wakeMinutes)}`;
+      maxLabel.textContent = 'To 24:00 (midnight)';
+      const tickMinutes = [];
+      for (let minute = 0; minute < availableMinutes; minute += 240) tickMinutes.push(minute);
+      if (tickMinutes.at(-1) !== availableMinutes) tickMinutes.push(availableMinutes);
+      mount(ticks, tickMinutes.map((minute, index) => el('span', {
+        class: `study-slider-tick${index === 0 ? ' is-first' : ''}${index === tickMinutes.length - 1 ? ' is-last' : ''}`,
+        style: { left: `${(minute / availableMinutes) * 100}%` },
+        text: clockFromMinutes(wakeMinutes + minute)
       })));
       renderTotal();
       syncSelfPracticeAvailability();
     }
+
+    slider.addEventListener('input', () => {
+      const next = Number(slider.value);
+      if (next === 0 && studyMinutes > 0 && hasSelfPracticeInput()) {
+        slider.value = String(studyMinutes);
+        error.textContent = 'Clear every Self-practice field before moving study time to 0.';
+        renderTotal();
+        return;
+      }
+      studyMinutes = next;
+      touched.add('studyTime');
+      renderTotal();
+      syncSelfPracticeAvailability();
+      paintValidation();
+    });
 
     return {
       element: el('section', { class: 'form-section form-section--divided study-time-section' }, [
@@ -284,8 +298,16 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
           el('h3', { class: 'section-title', text: 'Study time' }),
           total
         ]),
-        el('p', { class: 'section-note', text: 'Tap every half-hour block when you studied. Green blocks count toward the total.' }),
-        timeline,
+        el('p', { class: 'section-note', text: 'Slide to the total amount of time you studied between waking up and midnight.' }),
+        el('div', { class: 'study-slider-wrap' }, [
+          liveValue,
+          slider,
+          ticks,
+          el('div', { class: 'study-slider-labels' }, [
+            startLabel,
+            maxLabel
+          ])
+        ]),
         error
       ]),
       refresh
@@ -457,8 +479,8 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     errorNodes.clear();
     mockTaken = '';
     paperAnalysisEnabled = false;
-    studySlots = [];
-    selectedStudySlots.clear();
+    studyMinutes = 0;
+    studyWakeMinutes = null;
 
     let studyTimeline;
     const markWake = () => {
@@ -478,7 +500,7 @@ export function createSubmitView({ store, onSubmitted, onRequestToken, onAuthFai
     inputs.set('wakeUpTime', wakeInput);
     const wakeField = fieldShell('Wake-up time', wakeInput, 'When you actually got out of bed.');
     errorNodes.set('wakeUpTime', wakeField.error);
-    studyTimeline = buildStudyTimelineSection(wakeInput);
+    studyTimeline = buildStudyTimeSection(wakeInput);
 
     const subjectCards = CONFIG.subjects.map(({ key, label }) => {
       const balance = el('p', { class: 'balance-error', role: 'alert' });
