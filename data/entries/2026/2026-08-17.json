@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-17",
+  "wakeUpTime": "07:30",
+  "wakeUpMinutes": 450,
+  "studyTime": {
+    "totalMinutes": 318
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 15,
+      "correct": 8,
+      "wrong": 7,
+      "accuracy": 53.3,
+      "topics": "Work\n3 dont know baki glt",
+      "topicList": [
+        "Work",
+        "3 dont know baki glt"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 30,
+      "correct": 21,
+      "wrong": 9,
+      "accuracy": 70,
+      "topics": "Electrochem\n5 left no idea 4 glt cal mistake ",
+      "topicList": [
+        "Electrochem",
+        "5 left no idea 4 glt cal mistake"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 70,
+      "correct": 57,
+      "wrong": 13,
+      "accuracy": 81.4,
+      "topics": "Cell \n4 left baki yaad nhi aawa",
+      "topicList": [
+        "Cell",
+        "4 left baki yaad nhi aawa"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 115,
+    "correct": 86,
+    "wrong": 29,
+    "accuracy": 74.8
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-08-18T08:02:03+05:30",
+  "source": "web"
+}
