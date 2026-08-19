@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-18",
+  "wakeUpTime": "07:30",
+  "wakeUpMinutes": 450,
+  "studyTime": {
+    "totalMinutes": 300
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 10,
+      "correct": 7,
+      "wrong": 3,
+      "accuracy": 70,
+      "topics": "Work",
+      "topicList": [
+        "Work"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 20,
+      "correct": 14,
+      "wrong": 6,
+      "accuracy": 70,
+      "topics": "Electrochem",
+      "topicList": [
+        "Electrochem"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 90,
+      "correct": 75,
+      "wrong": 15,
+      "accuracy": 83.3,
+      "topics": "Cell cycle",
+      "topicList": [
+        "Cell cycle"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 120,
+    "correct": 96,
+    "wrong": 24,
+    "accuracy": 80
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-08-19T09:19:59+05:30",
+  "source": "web"
+}
