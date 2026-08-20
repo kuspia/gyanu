@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-19",
+  "wakeUpTime": "07:30",
+  "wakeUpMinutes": 450,
+  "studyTime": {
+    "totalMinutes": 300
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 10,
+      "correct": 5,
+      "wrong": 5,
+      "accuracy": 50,
+      "topics": "Capacitance\nLec",
+      "topicList": [
+        "Capacitance",
+        "Lec"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 0,
+      "correct": 0,
+      "wrong": 0,
+      "accuracy": null,
+      "topics": "Solutions\nOnly theory part\nLec",
+      "topicList": [
+        "Solutions",
+        "Only theory part",
+        "Lec"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 60,
+      "correct": 35,
+      "wrong": 25,
+      "accuracy": 58.3,
+      "topics": "Living world\nLec",
+      "topicList": [
+        "Living world",
+        "Lec"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 70,
+    "correct": 40,
+    "wrong": 30,
+    "accuracy": 57.1
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-08-20T14:28:05+05:30",
+  "source": "web"
+}
