@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-20",
+  "wakeUpTime": "07:30",
+  "wakeUpMinutes": 450,
+  "studyTime": {
+    "totalMinutes": 300
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 10,
+      "correct": 6,
+      "wrong": 4,
+      "accuracy": 60,
+      "topics": "Capacitance\nVid lec",
+      "topicList": [
+        "Capacitance",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 15,
+      "correct": 7,
+      "wrong": 8,
+      "accuracy": 46.7,
+      "topics": "Solutions\nVid lec",
+      "topicList": [
+        "Solutions",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 50,
+      "correct": 30,
+      "wrong": 20,
+      "accuracy": 60,
+      "topics": "Plant kingdom \nVid lec",
+      "topicList": [
+        "Plant kingdom",
+        "Vid lec"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 75,
+    "correct": 43,
+    "wrong": 32,
+    "accuracy": 57.3
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-08-21T14:08:38+05:30",
+  "source": "web"
+}
