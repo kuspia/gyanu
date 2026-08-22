@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-21",
+  "wakeUpTime": "07:30",
+  "wakeUpMinutes": 450,
+  "studyTime": {
+    "totalMinutes": 300
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 18,
+      "correct": 11,
+      "wrong": 7,
+      "accuracy": 61.1,
+      "topics": "Capacitance \nParrel plate capacitor \nVid lec\n",
+      "topicList": [
+        "Capacitance",
+        "Parrel plate capacitor",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 15,
+      "correct": 7,
+      "wrong": 8,
+      "accuracy": 46.7,
+      "topics": "Solutions\nVid lec",
+      "topicList": [
+        "Solutions",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 50,
+      "correct": 35,
+      "wrong": 15,
+      "accuracy": 70,
+      "topics": "Plant kingdom\nLiving world\nVid lec",
+      "topicList": [
+        "Plant kingdom",
+        "Living world",
+        "Vid lec"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 83,
+    "correct": 53,
+    "wrong": 30,
+    "accuracy": 63.9
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-08-22T13:35:57+05:30",
+  "source": "web"
+}
