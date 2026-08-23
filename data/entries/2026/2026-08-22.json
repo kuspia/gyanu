@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-22",
+  "wakeUpTime": "07:30",
+  "wakeUpMinutes": 450,
+  "studyTime": {
+    "totalMinutes": 300
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 18,
+      "correct": 10,
+      "wrong": 8,
+      "accuracy": 55.6,
+      "topics": "Magnetic field\nVid lec",
+      "topicList": [
+        "Magnetic field",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 20,
+      "correct": 11,
+      "wrong": 9,
+      "accuracy": 55,
+      "topics": "D block\nVid lec",
+      "topicList": [
+        "D block",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 55,
+      "correct": 37,
+      "wrong": 18,
+      "accuracy": 67.3,
+      "topics": "Biological classification \nVid lec",
+      "topicList": [
+        "Biological classification",
+        "Vid lec"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 93,
+    "correct": 58,
+    "wrong": 35,
+    "accuracy": 62.4
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-08-23T09:34:28+05:30",
+  "source": "web"
+}
