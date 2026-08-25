@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-24",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 300
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 14,
+      "correct": 7,
+      "wrong": 7,
+      "accuracy": 50,
+      "topics": "Magnetism and matter\nVid lec",
+      "topicList": [
+        "Magnetism and matter",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 19,
+      "correct": 9,
+      "wrong": 10,
+      "accuracy": 47.4,
+      "topics": "Electrochem \nVid lec",
+      "topicList": [
+        "Electrochem",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 60,
+      "correct": 38,
+      "wrong": 22,
+      "accuracy": 63.3,
+      "topics": "Molecular basis of inheritance\nVid lec",
+      "topicList": [
+        "Molecular basis of inheritance",
+        "Vid lec"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 93,
+    "correct": 54,
+    "wrong": 39,
+    "accuracy": 58.1
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-08-25T13:12:48+05:30",
+  "source": "web"
+}
