@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-25",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 318
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 20,
+      "correct": 11,
+      "wrong": 9,
+      "accuracy": 55,
+      "topics": "Magnetism and matter\nVid lec",
+      "topicList": [
+        "Magnetism and matter",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 24,
+      "correct": 15,
+      "wrong": 9,
+      "accuracy": 62.5,
+      "topics": "Solutions \nVid lec",
+      "topicList": [
+        "Solutions",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 55,
+      "correct": 39,
+      "wrong": 16,
+      "accuracy": 70.9,
+      "topics": "Principle of inheritance and variation\nVid lec",
+      "topicList": [
+        "Principle of inheritance and variation",
+        "Vid lec"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 99,
+    "correct": 65,
+    "wrong": 34,
+    "accuracy": 65.7
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-08-26T20:44:02+05:30",
+  "source": "web"
+}
