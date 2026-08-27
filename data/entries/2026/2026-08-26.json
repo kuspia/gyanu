@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-26",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 360
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 25,
+      "correct": 14,
+      "wrong": 11,
+      "accuracy": 56,
+      "topics": "Work energy power\nVid lec",
+      "topicList": [
+        "Work energy power",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 20,
+      "correct": 13,
+      "wrong": 7,
+      "accuracy": 65,
+      "topics": "Electrochem\nVid lec",
+      "topicList": [
+        "Electrochem",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 60,
+      "correct": 43,
+      "wrong": 17,
+      "accuracy": 71.7,
+      "topics": "Principle of inheritance and variation\nVid lec",
+      "topicList": [
+        "Principle of inheritance and variation",
+        "Vid lec"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 105,
+    "correct": 70,
+    "wrong": 35,
+    "accuracy": 66.7
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-08-27T20:24:31+05:30",
+  "source": "web"
+}
