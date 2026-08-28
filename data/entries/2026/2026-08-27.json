@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-27",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 300
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 25,
+      "correct": 15,
+      "wrong": 10,
+      "accuracy": 60,
+      "topics": "Capacitance \nVid lec",
+      "topicList": [
+        "Capacitance",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 20,
+      "correct": 12,
+      "wrong": 8,
+      "accuracy": 60,
+      "topics": "Electrochem\nVid lec",
+      "topicList": [
+        "Electrochem",
+        "Vid lec"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 65,
+      "correct": 47,
+      "wrong": 18,
+      "accuracy": 72.3,
+      "topics": "Molecular basis of inheritance\nVid lec",
+      "topicList": [
+        "Molecular basis of inheritance",
+        "Vid lec"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 110,
+    "correct": 74,
+    "wrong": 36,
+    "accuracy": 67.3
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-08-28T22:39:19+05:30",
+  "source": "web"
+}
