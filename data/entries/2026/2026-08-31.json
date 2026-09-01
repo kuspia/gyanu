@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-08-31",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 390
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 25,
+      "correct": 16,
+      "wrong": 9,
+      "accuracy": 64,
+      "topics": "Electrostatic ",
+      "topicList": [
+        "Electrostatic"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 20,
+      "correct": 12,
+      "wrong": 8,
+      "accuracy": 60,
+      "topics": "Coordination compound",
+      "topicList": [
+        "Coordination compound"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 55,
+      "correct": 41,
+      "wrong": 14,
+      "accuracy": 74.5,
+      "topics": "Principle of inheritance and variation",
+      "topicList": [
+        "Principle of inheritance and variation"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 100,
+    "correct": 69,
+    "wrong": 31,
+    "accuracy": 69
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-01T09:23:45+05:30",
+  "source": "web"
+}
