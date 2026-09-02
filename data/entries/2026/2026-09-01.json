@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-01",
+  "wakeUpTime": "07:30",
+  "wakeUpMinutes": 450,
+  "studyTime": {
+    "totalMinutes": 390
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 18,
+      "correct": 9,
+      "wrong": 9,
+      "accuracy": 50,
+      "topics": "Electrostatics",
+      "topicList": [
+        "Electrostatics"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 22,
+      "correct": 14,
+      "wrong": 8,
+      "accuracy": 63.6,
+      "topics": "Electrochemistry",
+      "topicList": [
+        "Electrochemistry"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 50,
+      "correct": 38,
+      "wrong": 12,
+      "accuracy": 76,
+      "topics": "Human repro",
+      "topicList": [
+        "Human repro"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 90,
+    "correct": 61,
+    "wrong": 29,
+    "accuracy": 67.8
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-02T18:49:38+05:30",
+  "source": "web"
+}
