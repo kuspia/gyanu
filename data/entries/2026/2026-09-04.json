@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-04",
+  "wakeUpTime": "07:30",
+  "wakeUpMinutes": 450,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 24,
+      "correct": 15,
+      "wrong": 9,
+      "accuracy": 62.5,
+      "topics": "Current electricity",
+      "topicList": [
+        "Current electricity"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 20,
+      "correct": 12,
+      "wrong": 8,
+      "accuracy": 60,
+      "topics": "Optical isomerism",
+      "topicList": [
+        "Optical isomerism"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 55,
+      "correct": 44,
+      "wrong": 11,
+      "accuracy": 80,
+      "topics": "Cell unit of life",
+      "topicList": [
+        "Cell unit of life"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 99,
+    "correct": 71,
+    "wrong": 28,
+    "accuracy": 71.7
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-05T16:39:29+05:30",
+  "source": "web"
+}
