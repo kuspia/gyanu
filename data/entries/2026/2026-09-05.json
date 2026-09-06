@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-05",
+  "wakeUpTime": "09:30",
+  "wakeUpMinutes": 570,
+  "studyTime": {
+    "totalMinutes": 300
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 15,
+      "correct": 8,
+      "wrong": 7,
+      "accuracy": 53.3,
+      "topics": "Electrostatic ",
+      "topicList": [
+        "Electrostatic"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 22,
+      "correct": 14,
+      "wrong": 8,
+      "accuracy": 63.6,
+      "topics": "Coordination compounds ",
+      "topicList": [
+        "Coordination compounds"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 45,
+      "correct": 38,
+      "wrong": 7,
+      "accuracy": 84.4,
+      "topics": "Cell unit of life ",
+      "topicList": [
+        "Cell unit of life"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 82,
+    "correct": 60,
+    "wrong": 22,
+    "accuracy": 73.2
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-06T22:53:27+05:30",
+  "source": "web"
+}
