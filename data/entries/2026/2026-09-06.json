@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-06",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 180
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 0,
+      "correct": 0,
+      "wrong": 0,
+      "accuracy": null,
+      "topics": null,
+      "topicList": [],
+      "studied": false
+    },
+    "chemistry": {
+      "attempted": 20,
+      "correct": 12,
+      "wrong": 8,
+      "accuracy": 60,
+      "topics": "Coordination compounds ",
+      "topicList": [
+        "Coordination compounds"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 60,
+      "correct": 48,
+      "wrong": 12,
+      "accuracy": 80,
+      "topics": "Cell unit of life",
+      "topicList": [
+        "Cell unit of life"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 80,
+    "correct": 60,
+    "wrong": 20,
+    "accuracy": 75
+  },
+  "mockPaper": {
+    "taken": true,
+    "experience": "Whi same hai jo niche likhq hai"
+  },
+  "paperAnalysis": {
+    "subjects": {
+      "physics": {
+        "attempted": 16,
+        "correct": 11,
+        "wrong": 5,
+        "accuracy": 68.8
+      },
+      "chemistry": {
+        "attempted": 22,
+        "correct": 15,
+        "wrong": 7,
+        "accuracy": 68.2
+      },
+      "biology": {
+        "attempted": 55,
+        "correct": 49,
+        "wrong": 6,
+        "accuracy": 89.1
+      }
+    },
+    "totals": {
+      "attempted": 93,
+      "correct": 75,
+      "wrong": 18,
+      "accuracy": 80.6
+    },
+    "score": 282,
+    "maxScore": 720,
+    "reflection": "फिजिक्स में मेरे क्वेश्चन गलत होने का रीजन ये है कि मैंने बहुत सारे फर्जी के क्वेश्चन अटेम्ट किए और जिस पर मुझे कमांड नहीं था, वो भी मैंने अटेम्ट किया। जैसे कुछ क्वेश्चन मुझे आते थे, दो ऑप्शन में कन्फ्यूजन हुआ गलती हो गई और कुछ कैल्कुलेशन मिस्टेक्स हुई हैं। बाकी जो क्वेश्चन मैंने नहीं आते थे, उसी पे मेरा मार्क्स बच गया और नॉन-नेगेटिव मार्किंग होती है केमिस्ट्री में भी, क्या कहते हैं, केमिस्ट्री में थोड़ा थ्योरी गड़बड़ हो गई ऑर्गेनिक केमिस्ट्री थी, ऑर्गेनिक में मुझे याद करने में थोड़ी दिक्कत थी, वहाँ पे थोड़ा मामला फँस गया। बाकी फिजिकल केमिस्ट्री में ये हुआ कि कुछ कैल्कुलेशन मिस्टेक्स हो गई और बायो का ओवरऑल तो सही था, मतलब कुछ क्वेश्चन जो मेरे नहीं बने, जो कि मैंने शायद सही से पढ़े नहीं थे और कहते हैं कि क्या कहते हैं वहाँ और कुछ सिली मिस्टेक, जैसे कि ध्यान से क्वेश्चन न पढ़ना, उसी पे ये जो सात- आठ क्वेश्चन गलत हुए हो"
+  },
+  "remarks": null,
+  "submittedAt": "2026-09-07T23:28:04+05:30",
+  "source": "web"
+}
