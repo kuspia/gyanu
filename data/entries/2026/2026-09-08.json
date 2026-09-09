@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-08",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 390
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 20,
+      "correct": 12,
+      "wrong": 8,
+      "accuracy": 60,
+      "topics": "Emi",
+      "topicList": [
+        "Emi"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 24,
+      "correct": 14,
+      "wrong": 10,
+      "accuracy": 58.3,
+      "topics": "Redox reaction ",
+      "topicList": [
+        "Redox reaction"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 60,
+      "correct": 47,
+      "wrong": 13,
+      "accuracy": 78.3,
+      "topics": "Breathing",
+      "topicList": [
+        "Breathing"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 104,
+    "correct": 73,
+    "wrong": 31,
+    "accuracy": 70.2
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-09T18:52:29+05:30",
+  "source": "web"
+}
