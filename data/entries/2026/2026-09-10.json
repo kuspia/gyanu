@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-10",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 300
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 22,
+      "correct": 14,
+      "wrong": 8,
+      "accuracy": 63.6,
+      "topics": "Emi",
+      "topicList": [
+        "Emi"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 25,
+      "correct": 18,
+      "wrong": 7,
+      "accuracy": 72,
+      "topics": "Redox ",
+      "topicList": [
+        "Redox"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 50,
+      "correct": 39,
+      "wrong": 11,
+      "accuracy": 78,
+      "topics": "Body fluid and circulation",
+      "topicList": [
+        "Body fluid and circulation"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 97,
+    "correct": 71,
+    "wrong": 26,
+    "accuracy": 73.2
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-11T23:41:47+05:30",
+  "source": "web"
+}
