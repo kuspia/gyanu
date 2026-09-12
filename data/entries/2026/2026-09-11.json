@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-11",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 240
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 15,
+      "correct": 8,
+      "wrong": 7,
+      "accuracy": 53.3,
+      "topics": "Electrostatics",
+      "topicList": [
+        "Electrostatics"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 19,
+      "correct": 12,
+      "wrong": 7,
+      "accuracy": 63.2,
+      "topics": "Coordination",
+      "topicList": [
+        "Coordination"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 45,
+      "correct": 36,
+      "wrong": 9,
+      "accuracy": 80,
+      "topics": "Cell cycle and division",
+      "topicList": [
+        "Cell cycle and division"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 79,
+    "correct": 56,
+    "wrong": 23,
+    "accuracy": 70.9
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-12T23:18:58+05:30",
+  "source": "web"
+}
