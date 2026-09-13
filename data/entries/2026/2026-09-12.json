@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-12",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 30,
+      "correct": 18,
+      "wrong": 12,
+      "accuracy": 60,
+      "topics": "Emi\nCollision",
+      "topicList": [
+        "Emi",
+        "Collision"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 25,
+      "correct": 16,
+      "wrong": 9,
+      "accuracy": 64,
+      "topics": "Coordination \nD block",
+      "topicList": [
+        "Coordination",
+        "D block"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 55,
+      "correct": 43,
+      "wrong": 12,
+      "accuracy": 78.2,
+      "topics": "Cell cycle\nBreathing",
+      "topicList": [
+        "Cell cycle",
+        "Breathing"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 110,
+    "correct": 77,
+    "wrong": 33,
+    "accuracy": 70
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-13T23:53:49+05:30",
+  "source": "web"
+}
