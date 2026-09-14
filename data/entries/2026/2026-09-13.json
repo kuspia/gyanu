@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-13",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 120
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 0,
+      "correct": 0,
+      "wrong": 0,
+      "accuracy": null,
+      "topics": null,
+      "topicList": [],
+      "studied": false
+    },
+    "chemistry": {
+      "attempted": 0,
+      "correct": 0,
+      "wrong": 0,
+      "accuracy": null,
+      "topics": null,
+      "topicList": [],
+      "studied": false
+    },
+    "biology": {
+      "attempted": 40,
+      "correct": 27,
+      "wrong": 13,
+      "accuracy": 67.5,
+      "topics": "Plant kingdom",
+      "topicList": [
+        "Plant kingdom"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 40,
+    "correct": 27,
+    "wrong": 13,
+    "accuracy": 67.5
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-14T23:57:35+05:30",
+  "source": "web"
+}
