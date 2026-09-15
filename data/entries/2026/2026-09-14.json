@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-14",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 20,
+      "correct": 12,
+      "wrong": 8,
+      "accuracy": 60,
+      "topics": "Magnetism ",
+      "topicList": [
+        "Magnetism"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 23,
+      "correct": 13,
+      "wrong": 10,
+      "accuracy": 56.5,
+      "topics": "Alcohol ",
+      "topicList": [
+        "Alcohol"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 54,
+      "correct": 41,
+      "wrong": 13,
+      "accuracy": 75.9,
+      "topics": "Morphology of flowering plants ",
+      "topicList": [
+        "Morphology of flowering plants"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 97,
+    "correct": 66,
+    "wrong": 31,
+    "accuracy": 68
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-15T23:54:55+05:30",
+  "source": "web"
+}
