@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-15",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 360
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 25,
+      "correct": 16,
+      "wrong": 9,
+      "accuracy": 64,
+      "topics": "Magnetism",
+      "topicList": [
+        "Magnetism"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 22,
+      "correct": 14,
+      "wrong": 8,
+      "accuracy": 63.6,
+      "topics": "Alcohol ",
+      "topicList": [
+        "Alcohol"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 60,
+      "correct": 46,
+      "wrong": 14,
+      "accuracy": 76.7,
+      "topics": "Morphology ",
+      "topicList": [
+        "Morphology"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 107,
+    "correct": 76,
+    "wrong": 31,
+    "accuracy": 71
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-16T23:38:37+05:30",
+  "source": "web"
+}
