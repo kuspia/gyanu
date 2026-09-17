@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-16",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 25,
+      "correct": 17,
+      "wrong": 8,
+      "accuracy": 68,
+      "topics": "Magnetism ",
+      "topicList": [
+        "Magnetism"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 30,
+      "correct": 21,
+      "wrong": 9,
+      "accuracy": 70,
+      "topics": "Phenol",
+      "topicList": [
+        "Phenol"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 67,
+      "correct": 55,
+      "wrong": 12,
+      "accuracy": 82.1,
+      "topics": "Anatomy",
+      "topicList": [
+        "Anatomy"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 122,
+    "correct": 93,
+    "wrong": 29,
+    "accuracy": 76.2
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-17T23:38:42+05:30",
+  "source": "web"
+}
