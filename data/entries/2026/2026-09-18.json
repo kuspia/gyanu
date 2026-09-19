@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-18",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 24,
+      "correct": 16,
+      "wrong": 8,
+      "accuracy": 66.7,
+      "topics": "Magnetism ",
+      "topicList": [
+        "Magnetism"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 20,
+      "correct": 13,
+      "wrong": 7,
+      "accuracy": 65,
+      "topics": "Alcohol phenol ether ",
+      "topicList": [
+        "Alcohol phenol ether"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 70,
+      "correct": 56,
+      "wrong": 14,
+      "accuracy": 80,
+      "topics": "Morphology \nAnatomy",
+      "topicList": [
+        "Morphology",
+        "Anatomy"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 114,
+    "correct": 85,
+    "wrong": 29,
+    "accuracy": 74.6
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-19T23:57:20+05:30",
+  "source": "web"
+}
