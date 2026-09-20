@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-19",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 20,
+      "correct": 13,
+      "wrong": 7,
+      "accuracy": 65,
+      "topics": "Magnetism\nCircular motion",
+      "topicList": [
+        "Magnetism",
+        "Circular motion"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 30,
+      "correct": 22,
+      "wrong": 8,
+      "accuracy": 73.3,
+      "topics": "D block\nEthers",
+      "topicList": [
+        "D block",
+        "Ethers"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 70,
+      "correct": 59,
+      "wrong": 11,
+      "accuracy": 84.3,
+      "topics": "Anatomy\nMorphology",
+      "topicList": [
+        "Anatomy",
+        "Morphology"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 120,
+    "correct": 94,
+    "wrong": 26,
+    "accuracy": 78.3
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-20T22:18:04+05:30",
+  "source": "web"
+}
