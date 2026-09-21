@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-20",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 180
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 0,
+      "correct": 0,
+      "wrong": 0,
+      "accuracy": null,
+      "topics": null,
+      "topicList": [],
+      "studied": false
+    },
+    "chemistry": {
+      "attempted": 25,
+      "correct": 17,
+      "wrong": 8,
+      "accuracy": 68,
+      "topics": "Redox ",
+      "topicList": [
+        "Redox"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 30,
+      "correct": 23,
+      "wrong": 7,
+      "accuracy": 76.7,
+      "topics": "Breathing",
+      "topicList": [
+        "Breathing"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 55,
+    "correct": 40,
+    "wrong": 15,
+    "accuracy": 72.7
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": {
+    "subjects": {
+      "physics": {
+        "attempted": 21,
+        "correct": 14,
+        "wrong": 7,
+        "accuracy": 66.7
+      },
+      "chemistry": {
+        "attempted": 21,
+        "correct": 12,
+        "wrong": 9,
+        "accuracy": 57.1
+      },
+      "biology": {
+        "attempted": 64,
+        "correct": 39,
+        "wrong": 25,
+        "accuracy": 60.9
+      }
+    },
+    "totals": {
+      "attempted": 106,
+      "correct": 65,
+      "wrong": 41,
+      "accuracy": 61.3
+    },
+    "score": 219,
+    "maxScore": 720,
+    "reflection": "टाइम मैनेजमेंट की वजह से इस बार पेपर अच्छा नहीं हो पाया और इतने कम नंबर लाने में भी कुछ मेरी गलती है क्योंकि पहला तो रीजन ये है कि टाइम मैनेजमेंट, और मेरा थोड़ा गड़बड़ था क्योंकि मेरी थोड़ी तबीयत नहीं सही थी। दूसरा ये कि फिजिक्स, मतलब फिजिक्स कह रहा हूँ, इतने क्वेश्चंस इसलिए गलत हुए क्योंकि क्लैरिटी न होने के वजह से दो ऑप्शन में फँसने के वजह से काफी क्वेश्चंस गलत हुए। इसपे मैंने ये सुधार करने का सोचा है कि क्या कहते हैं, कम से कम क्वेश्चन अटेम्प्ट करें और टाइम मैनेजमेंट का भी ध्यान रखें।एक और वजह यह भी है कि जैसे काफ़ी बहुत सारे लँदी questions होते हैं, उसको ढंग से न पढ़ने में या तो उनको पढ़ने में जैसे काफ़ी टाइम लगता है और काफ़ी समझने में परेशानियाँ होती हैं।"
+  },
+  "remarks": null,
+  "submittedAt": "2026-09-21T23:18:44+05:30",
+  "source": "web"
+}
