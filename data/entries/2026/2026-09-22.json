@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-22",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 30,
+      "correct": 18,
+      "wrong": 12,
+      "accuracy": 60,
+      "topics": "Current electricity ",
+      "topicList": [
+        "Current electricity"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 25,
+      "correct": 17,
+      "wrong": 8,
+      "accuracy": 68,
+      "topics": "Electrochemistry",
+      "topicList": [
+        "Electrochemistry"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 60,
+      "correct": 49,
+      "wrong": 11,
+      "accuracy": 81.7,
+      "topics": "Breathing",
+      "topicList": [
+        "Breathing"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 115,
+    "correct": 84,
+    "wrong": 31,
+    "accuracy": 73
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-23T20:57:14+05:30",
+  "source": "web"
+}
