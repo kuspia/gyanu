@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-24",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 25,
+      "correct": 17,
+      "wrong": 8,
+      "accuracy": 68,
+      "topics": "Current electricity ",
+      "topicList": [
+        "Current electricity"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 24,
+      "correct": 18,
+      "wrong": 6,
+      "accuracy": 75,
+      "topics": "Solutions",
+      "topicList": [
+        "Solutions"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 55,
+      "correct": 44,
+      "wrong": 11,
+      "accuracy": 80,
+      "topics": "Body fluids",
+      "topicList": [
+        "Body fluids"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 104,
+    "correct": 79,
+    "wrong": 25,
+    "accuracy": 76
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-25T22:47:41+05:30",
+  "source": "web"
+}
