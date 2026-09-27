@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-26",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 27,
+      "correct": 19,
+      "wrong": 8,
+      "accuracy": 70.4,
+      "topics": "Electrostatic",
+      "topicList": [
+        "Electrostatic"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 30,
+      "correct": 21,
+      "wrong": 9,
+      "accuracy": 70,
+      "topics": "Solutions",
+      "topicList": [
+        "Solutions"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 50,
+      "correct": 41,
+      "wrong": 9,
+      "accuracy": 82,
+      "topics": "Body fluids",
+      "topicList": [
+        "Body fluids"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 107,
+    "correct": 81,
+    "wrong": 26,
+    "accuracy": 75.7
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-09-27T23:21:50+05:30",
+  "source": "web"
+}
