@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-30",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 300
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 15,
+      "correct": 7,
+      "wrong": 8,
+      "accuracy": 46.7,
+      "topics": "Rotational motion ",
+      "topicList": [
+        "Rotational motion"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 15,
+      "correct": 8,
+      "wrong": 7,
+      "accuracy": 53.3,
+      "topics": "P block grp 13",
+      "topicList": [
+        "P block grp 13"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 40,
+      "correct": 29,
+      "wrong": 11,
+      "accuracy": 72.5,
+      "topics": "Biotechnology principles and processes ",
+      "topicList": [
+        "Biotechnology principles and processes"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 70,
+    "correct": 44,
+    "wrong": 26,
+    "accuracy": 62.9
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-10-01T18:58:43+05:30",
+  "source": "web"
+}
