@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-01",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 30,
+      "correct": 18,
+      "wrong": 12,
+      "accuracy": 60,
+      "topics": "Rotational ",
+      "topicList": [
+        "Rotational"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 25,
+      "correct": 17,
+      "wrong": 8,
+      "accuracy": 68,
+      "topics": "P block 13",
+      "topicList": [
+        "P block 13"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 55,
+      "correct": 45,
+      "wrong": 10,
+      "accuracy": 81.8,
+      "topics": "Biotechnology ",
+      "topicList": [
+        "Biotechnology"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 110,
+    "correct": 80,
+    "wrong": 30,
+    "accuracy": 72.7
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-10-02T22:28:27+05:30",
+  "source": "web"
+}
