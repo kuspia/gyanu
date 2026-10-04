@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-03",
+  "wakeUpTime": "07:00",
+  "wakeUpMinutes": 420,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 30,
+      "correct": 19,
+      "wrong": 11,
+      "accuracy": 63.3,
+      "topics": "Emi",
+      "topicList": [
+        "Emi"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 30,
+      "correct": 18,
+      "wrong": 12,
+      "accuracy": 60,
+      "topics": "P block ",
+      "topicList": [
+        "P block"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 70,
+      "correct": 60,
+      "wrong": 10,
+      "accuracy": 85.7,
+      "topics": "Biotechnology ",
+      "topicList": [
+        "Biotechnology"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 130,
+    "correct": 97,
+    "wrong": 33,
+    "accuracy": 74.6
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-10-04T23:34:58+05:30",
+  "source": "web"
+}
