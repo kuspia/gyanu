@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-10",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 24,
+      "correct": 14,
+      "wrong": 10,
+      "accuracy": 58.3,
+      "topics": "Ray optics",
+      "topicList": [
+        "Ray optics"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 25,
+      "correct": 17,
+      "wrong": 8,
+      "accuracy": 68,
+      "topics": "Isomerism",
+      "topicList": [
+        "Isomerism"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 55,
+      "correct": 42,
+      "wrong": 13,
+      "accuracy": 76.4,
+      "topics": "Plant kingdom",
+      "topicList": [
+        "Plant kingdom"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 104,
+    "correct": 73,
+    "wrong": 31,
+    "accuracy": 70.2
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-10-11T23:49:15+05:30",
+  "source": "web"
+}
