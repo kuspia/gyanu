@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-12",
+  "wakeUpTime": "07:30",
+  "wakeUpMinutes": 450,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 30,
+      "correct": 21,
+      "wrong": 9,
+      "accuracy": 70,
+      "topics": "Ray optics ",
+      "topicList": [
+        "Ray optics"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 27,
+      "correct": 19,
+      "wrong": 8,
+      "accuracy": 70.4,
+      "topics": "Isomerism ",
+      "topicList": [
+        "Isomerism"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 50,
+      "correct": 40,
+      "wrong": 10,
+      "accuracy": 80,
+      "topics": "Plant kingdom ",
+      "topicList": [
+        "Plant kingdom"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 107,
+    "correct": 80,
+    "wrong": 27,
+    "accuracy": 74.8
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": {
+    "subjects": {
+      "physics": {
+        "attempted": 22,
+        "correct": 17,
+        "wrong": 5,
+        "accuracy": 77.3
+      },
+      "chemistry": {
+        "attempted": 24,
+        "correct": 18,
+        "wrong": 6,
+        "accuracy": 75
+      },
+      "biology": {
+        "attempted": 65,
+        "correct": 59,
+        "wrong": 6,
+        "accuracy": 90.8
+      }
+    },
+    "totals": {
+      "attempted": 111,
+      "correct": 94,
+      "wrong": 17,
+      "accuracy": 84.7
+    },
+    "score": 359,
+    "maxScore": 720,
+    "reflection": "फिजिक्स में मेरे क्वेश्चन गलत होने का रीजन ये है कि मैंने बहुत सारे फर्जी के क्वेश्चन अटेम्ट किए और जिस पर मुझे कमांड नहीं था, वो भी मैंने अटेम्ट किया। जैसे कुछ क्वेश्चन मुझे आते थे, दो ऑप्शन में कन्फ्यूजन हुआ गलती हो गई और कुछ कैल्कुलेशन मिस्टेक्स हुई हैं। बाकी जो क्वेश्चन मैंने नहीं आते थे, उसी पे मेरा मार्क्स बच गया और नॉन-नेगेटिव मार्किंग होती है केमिस्ट्री में भी, क्या कहते हैं, केमिस्ट्री में थोड़ा थ्योरी गड़बड़ हो गई ऑर्गेनिक केमिस्ट्री थी, ऑर्गेनिक में मुझे याद करने में थोड़ी दिक्कत थी, वहाँ पे थोड़ा मामला फँस गया। बाकी फिजिकल केमिस्ट्री में ये हुआ कि कुछ कैल्कुलेशन मिस्टेक्स हो गई और बायो का ओवरऑल तो सही था, मतलब कुछ क्वेश्चन जो मेरे नहीं बने, जो कि मैंने शायद सही से पढ़े नहीं थे और कहते हैं कि क्या कहते हैं वहाँ और कुछ सिली मिस्टेक, जैसे कि ध्यान से क्वेश्चन न पढ़ना, उसी पे ये जो सात- आठ क्वेश्चन गलत हुए हो"
+  },
+  "remarks": null,
+  "submittedAt": "2026-10-13T19:32:12+05:30",
+  "source": "web"
+}
