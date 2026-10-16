@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "wakeUpTime": "07:30",
+  "wakeUpMinutes": 450,
+  "studyTime": {
+    "totalMinutes": 360
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 24,
+      "correct": 16,
+      "wrong": 8,
+      "accuracy": 66.7,
+      "topics": "Ray optics",
+      "topicList": [
+        "Ray optics"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 20,
+      "correct": 12,
+      "wrong": 8,
+      "accuracy": 60,
+      "topics": "Isomerism ",
+      "topicList": [
+        "Isomerism"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 53,
+      "correct": 41,
+      "wrong": 12,
+      "accuracy": 77.4,
+      "topics": "Neural",
+      "topicList": [
+        "Neural"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 97,
+    "correct": 69,
+    "wrong": 28,
+    "accuracy": 71.1
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-10-16T22:57:24+05:30",
+  "source": "web"
+}
