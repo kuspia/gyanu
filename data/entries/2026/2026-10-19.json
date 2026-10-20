@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-19",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 300
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 20,
+      "correct": 13,
+      "wrong": 7,
+      "accuracy": 65,
+      "topics": "Thermodynamics ",
+      "topicList": [
+        "Thermodynamics"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 15,
+      "correct": 8,
+      "wrong": 7,
+      "accuracy": 53.3,
+      "topics": "Goc",
+      "topicList": [
+        "Goc"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 80,
+      "correct": 65,
+      "wrong": 15,
+      "accuracy": 81.3,
+      "topics": "Neural\nChemical",
+      "topicList": [
+        "Neural",
+        "Chemical"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 115,
+    "correct": 86,
+    "wrong": 29,
+    "accuracy": 74.8
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-10-20T23:23:01+05:30",
+  "source": "web"
+}
