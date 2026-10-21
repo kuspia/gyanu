@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-20",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 360
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 30,
+      "correct": 22,
+      "wrong": 8,
+      "accuracy": 73.3,
+      "topics": "Ray",
+      "topicList": [
+        "Ray"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 24,
+      "correct": 16,
+      "wrong": 8,
+      "accuracy": 66.7,
+      "topics": "Isomerism ",
+      "topicList": [
+        "Isomerism"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 54,
+      "correct": 46,
+      "wrong": 8,
+      "accuracy": 85.2,
+      "topics": "Neural\nChemical",
+      "topicList": [
+        "Neural",
+        "Chemical"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 108,
+    "correct": 84,
+    "wrong": 24,
+    "accuracy": 77.8
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-10-21T18:56:04+05:30",
+  "source": "web"
+}
