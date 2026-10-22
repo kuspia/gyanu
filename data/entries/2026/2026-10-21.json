@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 30,
+      "correct": 19,
+      "wrong": 11,
+      "accuracy": 63.3,
+      "topics": "Thermodynamics ",
+      "topicList": [
+        "Thermodynamics"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 24,
+      "correct": 15,
+      "wrong": 9,
+      "accuracy": 62.5,
+      "topics": "Goc ",
+      "topicList": [
+        "Goc"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 53,
+      "correct": 42,
+      "wrong": 11,
+      "accuracy": 79.2,
+      "topics": "Plant",
+      "topicList": [
+        "Plant"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 107,
+    "correct": 76,
+    "wrong": 31,
+    "accuracy": 71
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-10-22T17:52:40+05:30",
+  "source": "web"
+}
