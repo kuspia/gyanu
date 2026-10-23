@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-22",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 300
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 20,
+      "correct": 12,
+      "wrong": 8,
+      "accuracy": 60,
+      "topics": "Thermal",
+      "topicList": [
+        "Thermal"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 30,
+      "correct": 20,
+      "wrong": 10,
+      "accuracy": 66.7,
+      "topics": "Goc\nIsomerism ",
+      "topicList": [
+        "Goc",
+        "Isomerism"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 50,
+      "correct": 41,
+      "wrong": 9,
+      "accuracy": 82,
+      "topics": "Excretory",
+      "topicList": [
+        "Excretory"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 100,
+    "correct": 73,
+    "wrong": 27,
+    "accuracy": 73
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-10-23T21:10:36+05:30",
+  "source": "web"
+}
