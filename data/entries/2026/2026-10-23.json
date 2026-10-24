@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-23",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 30,
+      "correct": 22,
+      "wrong": 8,
+      "accuracy": 73.3,
+      "topics": "Ray\nThermo",
+      "topicList": [
+        "Ray",
+        "Thermo"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 31,
+      "correct": 21,
+      "wrong": 10,
+      "accuracy": 67.7,
+      "topics": "Isomerism",
+      "topicList": [
+        "Isomerism"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 49,
+      "correct": 40,
+      "wrong": 9,
+      "accuracy": 81.6,
+      "topics": "Excretory",
+      "topicList": [
+        "Excretory"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 110,
+    "correct": 83,
+    "wrong": 27,
+    "accuracy": 75.5
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-10-24T23:46:44+05:30",
+  "source": "web"
+}
