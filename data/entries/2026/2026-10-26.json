@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-26",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 240
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 24,
+      "correct": 15,
+      "wrong": 9,
+      "accuracy": 62.5,
+      "topics": "Fluid",
+      "topicList": [
+        "Fluid"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 20,
+      "correct": 12,
+      "wrong": 8,
+      "accuracy": 60,
+      "topics": "Hydrocarbon",
+      "topicList": [
+        "Hydrocarbon"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 62,
+      "correct": 53,
+      "wrong": 9,
+      "accuracy": 85.5,
+      "topics": "Microbes",
+      "topicList": [
+        "Microbes"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 106,
+    "correct": 80,
+    "wrong": 26,
+    "accuracy": 75.5
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-10-27T20:12:53+05:30",
+  "source": "web"
+}
