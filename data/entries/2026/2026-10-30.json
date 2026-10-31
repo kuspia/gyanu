@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-30",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 360
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 22,
+      "correct": 14,
+      "wrong": 8,
+      "accuracy": 63.6,
+      "topics": "Wave",
+      "topicList": [
+        "Wave"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 24,
+      "correct": 15,
+      "wrong": 9,
+      "accuracy": 62.5,
+      "topics": "Haloalkanes",
+      "topicList": [
+        "Haloalkanes"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 62,
+      "correct": 52,
+      "wrong": 10,
+      "accuracy": 83.9,
+      "topics": "Human",
+      "topicList": [
+        "Human"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 108,
+    "correct": 81,
+    "wrong": 27,
+    "accuracy": 75
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-10-31T20:05:49+05:30",
+  "source": "web"
+}
