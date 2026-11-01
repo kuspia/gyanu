@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-31",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 31,
+      "correct": 22,
+      "wrong": 9,
+      "accuracy": 71,
+      "topics": "Wave",
+      "topicList": [
+        "Wave"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 26,
+      "correct": 18,
+      "wrong": 8,
+      "accuracy": 69.2,
+      "topics": "Haloarenes",
+      "topicList": [
+        "Haloarenes"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 50,
+      "correct": 39,
+      "wrong": 11,
+      "accuracy": 78,
+      "topics": "Evolution ",
+      "topicList": [
+        "Evolution"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 107,
+    "correct": 79,
+    "wrong": 28,
+    "accuracy": 73.8
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-11-01T21:09:38+05:30",
+  "source": "web"
+}
