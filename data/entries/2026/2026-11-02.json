@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-02",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 27,
+      "correct": 19,
+      "wrong": 8,
+      "accuracy": 70.4,
+      "topics": "Oscillation ",
+      "topicList": [
+        "Oscillation"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 30,
+      "correct": 22,
+      "wrong": 8,
+      "accuracy": 73.3,
+      "topics": "Redox ",
+      "topicList": [
+        "Redox"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 56,
+      "correct": 47,
+      "wrong": 9,
+      "accuracy": 83.9,
+      "topics": "Organism",
+      "topicList": [
+        "Organism"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 113,
+    "correct": 88,
+    "wrong": 25,
+    "accuracy": 77.9
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-11-03T18:12:03+05:30",
+  "source": "web"
+}
