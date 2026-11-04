@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-03",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 330
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 23,
+      "correct": 15,
+      "wrong": 8,
+      "accuracy": 65.2,
+      "topics": "Ray",
+      "topicList": [
+        "Ray"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 25,
+      "correct": 16,
+      "wrong": 9,
+      "accuracy": 64,
+      "topics": "Coordination ",
+      "topicList": [
+        "Coordination"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 51,
+      "correct": 41,
+      "wrong": 10,
+      "accuracy": 80.4,
+      "topics": "Cell unit",
+      "topicList": [
+        "Cell unit"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 99,
+    "correct": 72,
+    "wrong": 27,
+    "accuracy": 72.7
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-11-04T15:47:46+05:30",
+  "source": "web"
+}
