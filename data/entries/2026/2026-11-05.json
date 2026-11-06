@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-05",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 360
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 26,
+      "correct": 19,
+      "wrong": 7,
+      "accuracy": 73.1,
+      "topics": "Ray",
+      "topicList": [
+        "Ray"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 24,
+      "correct": 16,
+      "wrong": 8,
+      "accuracy": 66.7,
+      "topics": "Electrochem ",
+      "topicList": [
+        "Electrochem"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 51,
+      "correct": 42,
+      "wrong": 9,
+      "accuracy": 82.4,
+      "topics": "Biotechnology 1",
+      "topicList": [
+        "Biotechnology 1"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 101,
+    "correct": 77,
+    "wrong": 24,
+    "accuracy": 76.2
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-11-06T18:01:54+05:30",
+  "source": "web"
+}
