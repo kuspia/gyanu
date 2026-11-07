@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-06",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 210
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 0,
+      "correct": 0,
+      "wrong": 0,
+      "accuracy": null,
+      "topics": null,
+      "topicList": [],
+      "studied": false
+    },
+    "chemistry": {
+      "attempted": 0,
+      "correct": 0,
+      "wrong": 0,
+      "accuracy": null,
+      "topics": null,
+      "topicList": [],
+      "studied": false
+    },
+    "biology": {
+      "attempted": 75,
+      "correct": 58,
+      "wrong": 17,
+      "accuracy": 77.3,
+      "topics": "Biotechnology 1\nCell cycle",
+      "topicList": [
+        "Biotechnology 1",
+        "Cell cycle"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 75,
+    "correct": 58,
+    "wrong": 17,
+    "accuracy": 77.3
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-11-07T23:21:36+05:30",
+  "source": "web"
+}
