@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-13",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 360
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 26,
+      "correct": 17,
+      "wrong": 9,
+      "accuracy": 65.4,
+      "topics": "Thermo",
+      "topicList": [
+        "Thermo"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 29,
+      "correct": 21,
+      "wrong": 8,
+      "accuracy": 72.4,
+      "topics": "Sol",
+      "topicList": [
+        "Sol"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 55,
+      "correct": 44,
+      "wrong": 11,
+      "accuracy": 80,
+      "topics": "Plant",
+      "topicList": [
+        "Plant"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 110,
+    "correct": 82,
+    "wrong": 28,
+    "accuracy": 74.5
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-11-14T17:01:17+05:30",
+  "source": "web"
+}
