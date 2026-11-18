@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-17",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 360
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 26,
+      "correct": 18,
+      "wrong": 8,
+      "accuracy": 69.2,
+      "topics": "Magnetism",
+      "topicList": [
+        "Magnetism"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 24,
+      "correct": 18,
+      "wrong": 6,
+      "accuracy": 75,
+      "topics": "Isomerism ",
+      "topicList": [
+        "Isomerism"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 53,
+      "correct": 42,
+      "wrong": 11,
+      "accuracy": 79.2,
+      "topics": "Microbes",
+      "topicList": [
+        "Microbes"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 103,
+    "correct": 78,
+    "wrong": 25,
+    "accuracy": 75.7
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-11-18T23:53:43+05:30",
+  "source": "web"
+}
