@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-23",
+  "wakeUpTime": "09:00",
+  "wakeUpMinutes": 540,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 28,
+      "correct": 21,
+      "wrong": 7,
+      "accuracy": 75,
+      "topics": "Capicitance ",
+      "topicList": [
+        "Capicitance"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 30,
+      "correct": 22,
+      "wrong": 8,
+      "accuracy": 73.3,
+      "topics": "Nomenclature \n",
+      "topicList": [
+        "Nomenclature"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 70,
+      "correct": 58,
+      "wrong": 12,
+      "accuracy": 82.9,
+      "topics": "Neural \nChemical ",
+      "topicList": [
+        "Neural",
+        "Chemical"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 128,
+    "correct": 101,
+    "wrong": 27,
+    "accuracy": 78.9
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-11-24T20:57:30+05:30",
+  "source": "web"
+}
