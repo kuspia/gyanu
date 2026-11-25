@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-24",
+  "wakeUpTime": "08:30",
+  "wakeUpMinutes": 510,
+  "studyTime": {
+    "totalMinutes": 420
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 30,
+      "correct": 21,
+      "wrong": 9,
+      "accuracy": 70,
+      "topics": "Capicitance ",
+      "topicList": [
+        "Capicitance"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 26,
+      "correct": 19,
+      "wrong": 7,
+      "accuracy": 73.1,
+      "topics": "Sol",
+      "topicList": [
+        "Sol"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 59,
+      "correct": 50,
+      "wrong": 9,
+      "accuracy": 84.7,
+      "topics": "Dna\nPrinciple",
+      "topicList": [
+        "Dna",
+        "Principle"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 115,
+    "correct": 90,
+    "wrong": 25,
+    "accuracy": 78.3
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-11-25T23:21:16+05:30",
+  "source": "web"
+}
