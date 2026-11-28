@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-27",
+  "wakeUpTime": "08:00",
+  "wakeUpMinutes": 480,
+  "studyTime": {
+    "totalMinutes": 360
+  },
+  "subjects": {
+    "physics": {
+      "attempted": 15,
+      "correct": 9,
+      "wrong": 6,
+      "accuracy": 60,
+      "topics": "Gravitation",
+      "topicList": [
+        "Gravitation"
+      ],
+      "studied": true
+    },
+    "chemistry": {
+      "attempted": 20,
+      "correct": 13,
+      "wrong": 7,
+      "accuracy": 65,
+      "topics": "Aldehyde ",
+      "topicList": [
+        "Aldehyde"
+      ],
+      "studied": true
+    },
+    "biology": {
+      "attempted": 50,
+      "correct": 40,
+      "wrong": 10,
+      "accuracy": 80,
+      "topics": "Photosynthesis",
+      "topicList": [
+        "Photosynthesis"
+      ],
+      "studied": true
+    }
+  },
+  "totals": {
+    "attempted": 85,
+    "correct": 62,
+    "wrong": 23,
+    "accuracy": 72.9
+  },
+  "mockPaper": {
+    "taken": false,
+    "experience": null
+  },
+  "paperAnalysis": null,
+  "remarks": null,
+  "submittedAt": "2026-11-28T16:01:10+05:30",
+  "source": "web"
+}
